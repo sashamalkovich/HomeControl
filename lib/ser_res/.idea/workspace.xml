@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="ser_res" targetName="ser_res" />
+      <config projectName="ser_res" targetName="upload" />
+      <config projectName="ser_res" targetName="ser_res-burn" />
+      <config projectName="ser_res" targetName="ser_res-upload" />
+      <config projectName="ser_res" targetName="ser_res-size" />
+      <config projectName="ser_res" targetName="mega_CORE" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8f15d400-1067-4771-b528-d68c3446711c" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1YhLvgrFX02NAkwZwc1WdkrmhQe" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="CMake Application.upload">
+    <configuration name="mega_CORE" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ser_res" TARGET_NAME="mega_CORE" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ser_res-burn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ser_res" TARGET_NAME="ser_res-burn" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ser_res-size" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ser_res" TARGET_NAME="ser_res-size" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ser_res-upload" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ser_res" TARGET_NAME="ser_res-upload" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ser_res" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ser_res" TARGET_NAME="ser_res" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ser_res" RUN_TARGET_NAME="ser_res">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="upload" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ser_res" TARGET_NAME="upload" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.mega_CORE" />
+      <item itemvalue="CMake Application.ser_res" />
+      <item itemvalue="CMake Application.ser_res-burn" />
+      <item itemvalue="CMake Application.ser_res-size" />
+      <item itemvalue="CMake Application.ser_res-upload" />
+      <item itemvalue="CMake Application.upload" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8f15d400-1067-4771-b528-d68c3446711c" name="Default Changelist" comment="" />
+      <created>1583390111829</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583390111829</updated>
+      <workItem from="1583390116605" duration="7901000" />
+      <workItem from="1583404497205" duration="28139000" />
+      <workItem from="1583489242503" duration="2718000" />
+      <workItem from="1583492417874" duration="4976000" />
+      <workItem from="1583634803380" duration="1287000" />
+      <workItem from="1583663884529" duration="703000" />
+      <workItem from="1583665107419" duration="138000" />
+      <workItem from="1583744376824" duration="122000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

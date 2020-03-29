@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="supEEPROM" targetName="mega_CORE" />
+      <config projectName="supEEPROM" targetName="supEEPROM-size" />
+      <config projectName="supEEPROM" targetName="supEEPROM" />
+      <config projectName="supEEPROM" targetName="upload" />
+      <config projectName="supEEPROM" targetName="mega_EEPROM" />
+      <config projectName="supEEPROM" targetName="supEEPROM-burn" />
+      <config projectName="supEEPROM" targetName="supEEPROM-upload" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bfed3a51-82b3-4d35-859a-55b2d9e5f074" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1ZATkKxT6tWNK1Pcel0VgkJUY8M" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="CMake Application.upload">
+    <configuration name="mega_CORE" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="supEEPROM" TARGET_NAME="mega_CORE" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mega_EEPROM" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="supEEPROM" TARGET_NAME="mega_EEPROM" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="supEEPROM-burn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="supEEPROM" TARGET_NAME="supEEPROM-burn" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="supEEPROM-size" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="supEEPROM" TARGET_NAME="supEEPROM-size" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="supEEPROM-upload" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="supEEPROM" TARGET_NAME="supEEPROM-upload" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="supEEPROM" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="supEEPROM" TARGET_NAME="supEEPROM" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="supEEPROM" RUN_TARGET_NAME="supEEPROM">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="upload" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="supEEPROM" TARGET_NAME="upload" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.mega_CORE" />
+      <item itemvalue="CMake Application.mega_EEPROM" />
+      <item itemvalue="CMake Application.supEEPROM" />
+      <item itemvalue="CMake Application.supEEPROM-burn" />
+      <item itemvalue="CMake Application.supEEPROM-size" />
+      <item itemvalue="CMake Application.supEEPROM-upload" />
+      <item itemvalue="CMake Application.upload" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bfed3a51-82b3-4d35-859a-55b2d9e5f074" name="Default Changelist" comment="" />
+      <created>1584281040086</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584281040086</updated>
+      <workItem from="1584281043064" duration="5294000" />
+      <workItem from="1584321668347" duration="3310000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

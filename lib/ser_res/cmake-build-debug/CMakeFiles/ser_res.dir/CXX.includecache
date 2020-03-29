@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/macbook/CLionProjects/ser_res/def.h
+
+/Users/macbook/CLionProjects/ser_res/ser_res.cpp
+ser_res.h
+/Users/macbook/CLionProjects/ser_res/ser_res.h
+
+/Users/macbook/CLionProjects/ser_res/ser_res.h
+Arduino.h
+-
+def.h
+/Users/macbook/CLionProjects/ser_res/def.h
+

@@ -1,0 +1,9 @@
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/upload.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/supEEPROM-upload.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/supEEPROM-size.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/supEEPROM.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/supEEPROM-burn.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/mega_EEPROM.dir
+/Users/macbook/CLionProjects/supEEPROM/cmake-build-debug/CMakeFiles/mega_CORE.dir

@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+fb7f63cf6d50251c1f308c09eb1db75e CMakeFiles/supEEPROM-burn
+2e636adbd24bc097e682d7dcaa86a5c6 CMakeFiles/supEEPROM-size
+0c5e2f2e896e1186db195fb442e8e6c8 CMakeFiles/supEEPROM-upload

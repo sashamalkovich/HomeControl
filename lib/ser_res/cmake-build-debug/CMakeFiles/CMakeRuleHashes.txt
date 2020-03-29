@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+82642aa74732529e4c031b5d18925604 CMakeFiles/ser_res-burn
+121ead712f2f56380ff59818a2f0dc0c CMakeFiles/ser_res-size
+ffa68ac29cb542977dfe28e0b5682cdb CMakeFiles/ser_res-upload

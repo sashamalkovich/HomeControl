@@ -1,0 +1,8 @@
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/ser_res-burn.dir
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/upload.dir
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/ser_res-upload.dir
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/mega_CORE.dir
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/ser_res-size.dir
+/Users/macbook/CLionProjects/ser_res/cmake-build-debug/CMakeFiles/ser_res.dir
