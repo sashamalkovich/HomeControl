@@ -289,9 +289,10 @@ void HomeCore::saveParam()
 {
 }
 
-void HomeCore::drenageOnOff()
+bool HomeCore::drenageOnOff()
 {
     drenage ? drenage = false : drenage = true;
+    return drenage;
 }
 
 int HomeCore::bool2int(bool in)
@@ -457,7 +458,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_1 < drenageStop && SS_2 > sLTankMin && trg)
+        else if (!drenage || SS_1 >= drenageStop || SS_2 <= sLTankMin)
         {
             digitalWrite(RELAY_VALVE_1, LOW);
             // digitalWrite(RELAY_VALVE_2, LOW);
@@ -487,7 +488,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_1 > fillStop && trg)
+        else if (!drenage || SS_1 <= fillStop)
         {
             //digitalWrite(RELAY_VALVE_1, LOW);
             digitalWrite(RELAY_VALVE_2, LOW);
@@ -516,7 +517,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_1 > fillStop && SS_2 < 42 && trg)
+        else if (!drenage || SS_1 <= fillStop || SS_2 >= 42)
         {
             //digitalWrite(RELAY_VALVE_1, LOW);
             digitalWrite(RELAY_VALVE_2, LOW);
@@ -547,7 +548,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_2 < 42 && trg)
+        else if (!drenage || SS_2 >= 42)
         {
             digitalWrite(RELAY_VALVE_1, LOW);
             //digitalWrite(RELAY_VALVE_2, LOW);

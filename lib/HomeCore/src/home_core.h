@@ -71,7 +71,7 @@ protected:
 
     virtual void saveParam();
 
-    void drenageOnOff();
+    bool drenageOnOff();
 
     void save();
 
