@@ -282,6 +282,8 @@ int **HomeCore::runCore()
     lightsTimer();
 
     tempLighsOff();
+
+    watering (paramArray[0][0], paramArray[0][1], paramArray[0][3]);
     //  */
     return paramArray;
 }
@@ -601,6 +603,29 @@ void HomeCore::waterLevel(uint8_t cm)
         }
     }
 }
+
+void HomeCore::watering (uint8_t _hour, uint8_t _minutes, uint8_t _day) {
+
+      static bool wat = false;
+
+      if ((_hour == 12) && (_day % 1 == 0) && (_minutes  >= 0) && (_minutes  < 3)) {
+        wat = true;
+      } else {
+        wat = false;
+      }
+      if (wat) {
+        digitalWrite(_12_V_OUT_0, HIGH);
+        digitalWrite(_12_V_OUT_1, HIGH);
+        digitalWrite(_12_V_OUT_2, HIGH);
+        digitalWrite(_12_V_OUT_3, HIGH);
+      }
+      else {
+        digitalWrite(_12_V_OUT_0, LOW);
+        digitalWrite(_12_V_OUT_1, LOW);
+        digitalWrite(_12_V_OUT_2, LOW);
+        digitalWrite(_12_V_OUT_3, LOW);
+      }
+    }
 
 void HomeCore::waterLevelHT(uint8_t cm)
 {
