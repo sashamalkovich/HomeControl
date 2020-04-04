@@ -7,20 +7,20 @@ SerRes::SerRes()
     input = '\0';
     array = new char *[20];
     intArray = new int[2];
-    array[0] = "LTS";
-    array[1] = "LTA";
-    array[2] = "LTB";
-    array[3] = "LTC";
-    array[4] = "GRO";
-    array[5] = "TMR";
-    array[6] = "DRN";
-    array[7] = "FLL";
-    array[8] = "FLT";
-    array[9] = "DRT";
-    array[10] = "LDA";
-    array[11] = "SVA";
-    array[12] = "RCV";
-    array[13] = "RST";
+    array[0] = "GET";
+    array[1] = "PUT";
+    array[2] = "QUT";
+    array[3] = "TEST";
+    array[4] = "TOST";
+    array[5] = "TIST";
+    array[6] = "GOT";
+    array[7] = "POT";
+    array[8] = "QYT";
+    array[9] = "TUST";
+    array[10] = "TAST";
+    array[11] = "TYST";
+    array[12] = "GUT";
+    array[13] = "PET";
     array[14] = "QOT";
     array[15] = "TECT";
     array[16] = "TICT";
@@ -49,15 +49,13 @@ int *SerRes::response()
     int *s_res = respResult(array, intArray);
     //Serial.print("s_res -> ");
     // Serial.println(s_res);
-    if (millis() - timer > 2)
+
+    for (int i = 0; i < 20; i++)
     {
-        for (int i = 0; i < 20; i++)
-        {
-            pInputString[i] = '\0';
-        }
-        timer = millis();
+        pInputString[i] = '\0';
     }
-    SERIAL.flush();
+
+    _SERIAL.flush();
     return s_res;
 }
 
@@ -70,9 +68,9 @@ char *SerRes::ser_res(char *inputString, char &symbol)
 {
     static bool readSwitch;
     int i = 0;
-    while (SERIAL.available() > 0)
+    while (_SERIAL.available() > 0)
     {
-        input = SERIAL.read();
+        input = _SERIAL.read();
 
         if (input == symbol)
         {
@@ -100,6 +98,7 @@ char *SerRes::ser_res(char *inputString, char &symbol)
 
 bool SerRes::equals(const char *input1, const char *input2)
 {
+    bool sw;
     for (uint8_t i = 0; i < sizeof(input1) + 1; i++)
     {
         if (input1[i] == input2[i])

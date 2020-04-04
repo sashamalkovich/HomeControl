@@ -1,7 +1,7 @@
 #ifndef _SUP_EEPROM_H_
 #define _SUP_EEPROM_H_
 
-#include <EEPROM.h>
+#include <EEPROM/src/EEPROM.h>
 #include "Pool.h"
 
 

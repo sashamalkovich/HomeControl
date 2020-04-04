@@ -4,5 +4,5 @@
 
 #ifndef SER_RES_DEF_H
 #define SER_RES_DEF_H
-#define SERIAL Serial1
+#define _SERIAL Serial
 #endif //SER_RES_DEF_H

@@ -4,7 +4,6 @@
 #include <Arduino.h>
 #include "def.h"
 
-using namespace std;
 
 class SerRes {
 
@@ -14,11 +13,13 @@ public:
 
     ~SerRes();
 
-   virtual int *response();
+  virtual int *response();
 
     char *response(char &);
 
     static bool equals(const char *, const char *);
+protected:
+
 
 private:
     char *pInputString;
