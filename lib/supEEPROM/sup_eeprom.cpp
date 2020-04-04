@@ -31,5 +31,9 @@ void SupEEPROM::eDefPut() {
     Pool::eLights = true;
     Pool::eSaveMode = false;
     Pool::eTimer = true;
+    Pool::sHTankMax = 36;
+    Pool::sHTankMin = 4;
+    Pool::sLTankMax = 6;
+    Pool::sLTankMin = 4;
 
 }

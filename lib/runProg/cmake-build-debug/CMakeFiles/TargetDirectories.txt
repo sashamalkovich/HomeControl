@@ -1,0 +1,8 @@
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/runProg-burn.dir
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/upload.dir
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/mega_CORE.dir
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/runProg-size.dir
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/runProg.dir
+/Users/macbook/CLionProjects/runProg/cmake-build-debug/CMakeFiles/runProg-upload.dir
