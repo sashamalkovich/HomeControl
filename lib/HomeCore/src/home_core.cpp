@@ -557,7 +557,7 @@ void HomeCore::drenageStopFunc()
     digitalWrite(RELAY_VALVE_2, LOW);
     digitalWrite(RELAY_VALVE_3, LOW);
     digitalWrite(RELAY_VALVE_4, OFF);
-    digitalWrite(RELAY_VALVE_5, ON);
+    digitalWrite(RELAY_VALVE_5, OFF);
     digitalWrite(RELAY_PUMP, OFF);
     pLcd->setCursor(10, 3);
     drFeedback = false;
