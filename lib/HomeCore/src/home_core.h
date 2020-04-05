@@ -77,6 +77,10 @@ protected:
 
     static void (*resetFunc)(void);
 
+    unsigned int waterCycleGet();
+
+    void waterCycleAdd();
+
 private:
     int **paramArray;
     int actualcount; // Временная переменная определяющая изменение основного счетчика
@@ -84,6 +88,8 @@ private:
     volatile int state;     // Переменная хранящая статус вращения
     volatile int pinAValue; // Переменные хранящие состояние пина, для экономии времени
     volatile int pinBValue;
+
+    unsigned int waterCycles;
 
     void lcdOnOff();
 
@@ -105,7 +111,7 @@ private:
 
     void tempLighsOff();
 
-    void watering (uint8_t _hour, uint8_t _minutes, uint8_t _day);
+    void watering(uint8_t _hour, uint8_t _minutes, uint8_t _day);
 
     void drenageStopFunc();
 
@@ -116,8 +122,6 @@ private:
     void fillHt();
 
     void drainHt();
-
-    
 };
 
 #endif //_HOME_CORE_H_

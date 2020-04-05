@@ -269,7 +269,7 @@ int **HomeCore::runCore()
 
     if (paramArray[3][3] == 1)
     {
-        
+
         drenageOnOff();
     }
     static bool trg = false;
@@ -566,6 +566,8 @@ void HomeCore::drenageStopFunc()
 
 void HomeCore::waterLevel(uint8_t cm)
 {
+    static bool trg = false;
+
     if (!drenage)
     {
         if ((cm > sLTankMax + 2) || (cm < sLTankMin - 1))
@@ -587,6 +589,11 @@ void HomeCore::waterLevel(uint8_t cm)
                 pLcd->setCursor(0, 3);
                 pLcd->print("W  ");
                 delay(100);
+                if (!trg)
+                {
+                    waterCycleAdd();
+                    trg = true;
+                }
             }
 
             else if (cm < sLTankMax)
@@ -596,9 +603,20 @@ void HomeCore::waterLevel(uint8_t cm)
                 digitalWrite(RELAY_PUMP, OFF);
                 pLcd->setCursor(0, 3);
                 pLcd->print("   ");
+                trg = false;
             }
         }
     }
+}
+
+unsigned int HomeCore::waterCycleGet()
+{
+    return waterCycles;
+}
+
+void HomeCore::waterCycleAdd()
+{
+    waterCycles++;
 }
 
 void HomeCore::watering(uint8_t _hour, uint8_t _minutes, uint8_t _day)
