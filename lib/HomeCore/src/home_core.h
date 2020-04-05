@@ -109,6 +109,16 @@ private:
 
     void watering (uint8_t _hour, uint8_t _minutes, uint8_t _day);
 
+    void drenageStopFunc();
+
+    void drain();
+
+    void fill();
+
+    void fillHt();
+
+    void drainHt();
+
     
 };
 

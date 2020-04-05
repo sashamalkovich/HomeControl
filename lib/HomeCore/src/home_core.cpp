@@ -283,7 +283,7 @@ int **HomeCore::runCore()
 
     tempLighsOff();
 
-    watering (paramArray[0][0], paramArray[0][1], paramArray[0][3]);
+    watering(paramArray[0][0], paramArray[0][1], paramArray[0][3]);
     //  */
     return paramArray;
 }
@@ -426,20 +426,10 @@ void HomeCore::drenageFUNC()
     uint8_t SS_1 = paramArray[1][0];
     uint8_t SS_2 = paramArray[1][1];
 
-    static bool trg = false;
-
     if (paramArray[3][5])
     {
         knobON[0] = false;
-        digitalWrite(RELAY_VALVE_1, LOW);
-        digitalWrite(RELAY_VALVE_2, LOW);
-        digitalWrite(RELAY_VALVE_3, LOW);
-        digitalWrite(RELAY_VALVE_4, OFF);
-        digitalWrite(RELAY_VALVE_5, OFF);
-        digitalWrite(RELAY_PUMP, OFF);
-        drenage = false;
-        pLcd->setCursor(10, 3);
-        pLcd->print("   ");
+        drenageStopFunc();
         drainON = 0;
         pLcd->clear();
         escape();
@@ -447,124 +437,114 @@ void HomeCore::drenageFUNC()
 
     if (drainON == 0)
     {
-        if (drenage && SS_1 < drenageStop && SS_2 > sLTankMin && !trg)
+        if (drenage && SS_1 < drenageStop && SS_2 > sLTankMin)
         {
-            digitalWrite(RELAY_VALVE_1, HIGH); // Выход на слив
-            //digitalWrite(RELAY_VALVE_2, HIGH); // Выход в бак
-            //digitalWrite(RELAY_VALVE_3, HIGH); // Вход чистой воды
-            //digitalWrite(RELAY_VALVE_4, ON);   // Вход водопровод
-            digitalWrite(RELAY_VALVE_5, ON); // Вход с нижнего бака
-            digitalWrite(RELAY_PUMP, ON);
-            pLcd->setCursor(10, 3);
-            pLcd->print("DR ");
-            trg = true;
-            drFeedback = true;
+            drain();
         }
-        else if (!drenage || SS_1 >= drenageStop || SS_2 <= sLTankMin)
+        else
         {
-            digitalWrite(RELAY_VALVE_1, LOW);
-            // digitalWrite(RELAY_VALVE_2, LOW);
-            //digitalWrite(RELAY_VALVE_3, LOW);
-            //digitalWrite(RELAY_VALVE_4, OFF);
-            digitalWrite(RELAY_VALVE_5, OFF);
-            digitalWrite(RELAY_PUMP, OFF);
-            drenage = false;
-            trg = false;
-            drFeedback = false;
-            pLcd->setCursor(10, 3);
-            pLcd->print("   ");
+            drenageStopFunc();
         }
     }
     else if (drainON == 1)
     {
-        if (drenage && SS_1 > fillStop && !trg)
+        if (drenage && SS_1 > fillStop)
         {
-            //digitalWrite(RELAY_VALVE_1, HIGH);
-            digitalWrite(RELAY_VALVE_2, HIGH);
-            //digitalWrite(RELAY_VALVE_3, HIGH);
-            digitalWrite(RELAY_VALVE_4, ON);
-            //digitalWrite(RELAY_VALVE_5, ON);
-            digitalWrite(RELAY_PUMP, ON);
-            pLcd->setCursor(10, 3);
-            pLcd->print("FL ");
-            trg = true;
-            drFeedback = true;
+            fill();
         }
-        else if (!drenage || SS_1 <= fillStop)
+        else
         {
-            //digitalWrite(RELAY_VALVE_1, LOW);
-            digitalWrite(RELAY_VALVE_2, LOW);
-            //digitalWrite(RELAY_VALVE_3, LOW);
-            digitalWrite(RELAY_VALVE_4, OFF);
-            digitalWrite(RELAY_PUMP, OFF);
-            pLcd->setCursor(10, 3);
-            drenage = false;
-            trg = false;
-            drFeedback = false;
-            pLcd->print("   ");
+            drenageStopFunc();
         }
     }
     else if (drainON == 2)
     {
-        if (drenage && SS_1 > fillStop && SS_2 < 42 && !trg)
+        if (drenage && SS_1 > fillStop && SS_2 < 42)
         {
-            //digitalWrite(RELAY_VALVE_1, HIGH);
-            digitalWrite(RELAY_VALVE_2, HIGH);
-            digitalWrite(RELAY_VALVE_3, HIGH);
-            //digitalWrite(RELAY_VALVE_4, ON);
-            //digitalWrite(RELAY_VALVE_5, ON);
-            digitalWrite(RELAY_PUMP, ON);
-            pLcd->setCursor(10, 3);
-            pLcd->print("FT ");
-            trg = true;
-            drFeedback = true;
+            fillHt();
         }
-        else if (!drenage || SS_1 <= fillStop || SS_2 >= 42)
+        else
         {
-            //digitalWrite(RELAY_VALVE_1, LOW);
-            digitalWrite(RELAY_VALVE_2, LOW);
-            digitalWrite(RELAY_VALVE_3, LOW);
-            //digitalWrite(RELAY_VALVE_4, OFF);
-            //digitalWrite(RELAY_VALVE_5, ON);
-            digitalWrite(RELAY_PUMP, OFF);
-            pLcd->setCursor(10, 3);
-            drenage = false;
-            trg = false;
-            drFeedback = false;
-            pLcd->print("   ");
+            drenageStopFunc();
         }
     }
     else if (drainON == 3)
     {
-        if (drenage && SS_2 < 42 && !trg)
+        if (drenage && SS_2 < 42)
         {
-            digitalWrite(RELAY_VALVE_1, HIGH);
-            //digitalWrite(RELAY_VALVE_2, HIGH);
-            digitalWrite(RELAY_VALVE_3, HIGH);
-            //digitalWrite(RELAY_VALVE_4, ON);
-            //digitalWrite(RELAY_VALVE_5, ON);
-            digitalWrite(RELAY_PUMP, ON);
-            pLcd->setCursor(10, 3);
-            pLcd->print("DT");
-            pLcd->setCursor(3, 1);
-            trg = true;
-            drFeedback = true;
+            drainHt();
         }
-        else if (!drenage || SS_2 >= 42)
+        else
         {
-            digitalWrite(RELAY_VALVE_1, LOW);
-            //digitalWrite(RELAY_VALVE_2, LOW);
-            digitalWrite(RELAY_VALVE_3, LOW);
-            //digitalWrite(RELAY_VALVE_4, OFF);
-            //digitalWrite(RELAY_VALVE_5, ON);
-            digitalWrite(RELAY_PUMP, OFF);
-            pLcd->setCursor(10, 3);
-            drenage = false;
-            trg = false;
-            drFeedback = false;
-            pLcd->print("   ");
+            drenageStopFunc();
         }
     }
+}
+
+void HomeCore::drain()
+{
+    digitalWrite(RELAY_VALVE_1, HIGH); // Выход на слив
+    //digitalWrite(RELAY_VALVE_2, HIGH); // Выход в бак
+    //digitalWrite(RELAY_VALVE_3, HIGH); // Вход чистой воды
+    //digitalWrite(RELAY_VALVE_4, ON);   // Вход водопровод
+    digitalWrite(RELAY_VALVE_5, ON); // Вход с нижнего бака
+    digitalWrite(RELAY_PUMP, ON);
+    pLcd->setCursor(10, 3);
+    pLcd->print("DR ");
+    drFeedback = true;
+}
+
+void HomeCore::fill()
+{
+    //digitalWrite(RELAY_VALVE_1, HIGH);
+    digitalWrite(RELAY_VALVE_2, HIGH);
+    //digitalWrite(RELAY_VALVE_3, HIGH);
+    digitalWrite(RELAY_VALVE_4, ON);
+    //digitalWrite(RELAY_VALVE_5, ON);
+    digitalWrite(RELAY_PUMP, ON);
+    pLcd->setCursor(10, 3);
+    pLcd->print("FL ");
+    drFeedback = true;
+}
+
+void HomeCore::fillHt()
+{
+    //digitalWrite(RELAY_VALVE_1, HIGH);
+    digitalWrite(RELAY_VALVE_2, HIGH);
+    digitalWrite(RELAY_VALVE_3, HIGH);
+    //digitalWrite(RELAY_VALVE_4, ON);
+    //digitalWrite(RELAY_VALVE_5, ON);
+    digitalWrite(RELAY_PUMP, ON);
+    pLcd->setCursor(10, 3);
+    pLcd->print("FT ");
+    drFeedback = true;
+}
+
+void HomeCore::drainHt()
+{
+    digitalWrite(RELAY_VALVE_1, HIGH);
+    //digitalWrite(RELAY_VALVE_2, HIGH);
+    digitalWrite(RELAY_VALVE_3, HIGH);
+    //digitalWrite(RELAY_VALVE_4, ON);
+    //digitalWrite(RELAY_VALVE_5, ON);
+    digitalWrite(RELAY_PUMP, ON);
+    pLcd->setCursor(10, 3);
+    pLcd->print("DT");
+    pLcd->setCursor(3, 1);
+    drFeedback = true;
+}
+
+void HomeCore::drenageStopFunc()
+{
+    digitalWrite(RELAY_VALVE_1, LOW);
+    digitalWrite(RELAY_VALVE_2, LOW);
+    digitalWrite(RELAY_VALVE_3, LOW);
+    digitalWrite(RELAY_VALVE_4, OFF);
+    digitalWrite(RELAY_VALVE_5, ON);
+    digitalWrite(RELAY_PUMP, OFF);
+    pLcd->setCursor(10, 3);
+    drFeedback = false;
+    pLcd->print("   ");
 }
 
 void HomeCore::waterLevel(uint8_t cm)
@@ -604,28 +584,34 @@ void HomeCore::waterLevel(uint8_t cm)
     }
 }
 
-void HomeCore::watering (uint8_t _hour, uint8_t _minutes, uint8_t _day) {
+void HomeCore::watering(uint8_t _hour, uint8_t _minutes, uint8_t _day)
+{
 
-      static bool wat = false;
+    static bool wat = false;
 
-      if ((_hour == 12) && (_day % 1 == 0) && (_minutes  >= 0) && (_minutes  < 3)) {
+    if ((_hour == 12) && (_day % 1 == 0) && (_minutes >= 0) && (_minutes < 3))
+    {
         wat = true;
-      } else {
+    }
+    else
+    {
         wat = false;
-      }
-      if (wat) {
+    }
+    if (wat)
+    {
         digitalWrite(_12_V_OUT_0, HIGH);
         digitalWrite(_12_V_OUT_1, HIGH);
         digitalWrite(_12_V_OUT_2, HIGH);
         digitalWrite(_12_V_OUT_3, HIGH);
-      }
-      else {
+    }
+    else
+    {
         digitalWrite(_12_V_OUT_0, LOW);
         digitalWrite(_12_V_OUT_1, LOW);
         digitalWrite(_12_V_OUT_2, LOW);
         digitalWrite(_12_V_OUT_3, LOW);
-      }
     }
+}
 
 void HomeCore::waterLevelHT(uint8_t cm)
 {
@@ -635,7 +621,7 @@ void HomeCore::waterLevelHT(uint8_t cm)
     {
         digitalWrite(RELAY_VALVE_6, OFF);
         pLcd->setCursor(3, 3);
-        pLcd->print("E1");
+        pLcd->print("E");
     }
     else
     {
@@ -645,8 +631,8 @@ void HomeCore::waterLevelHT(uint8_t cm)
             if (!trig)
             {
                 digitalWrite(RELAY_VALVE_6, ON);
-                pLcd->setCursor(0, 3);
-                pLcd->print("W ");
+                pLcd->setCursor(3, 3);
+                pLcd->print("W");
                 trig = true;
             }
         }
