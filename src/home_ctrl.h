@@ -18,13 +18,6 @@ public:
 
     void setup();
 
-private:
-
-
-    int *pSrArray;
-   // LiquidCrystal_I2C *pLcd;
-
-
 };
 
 #endif //_HOME_CTRL_H_

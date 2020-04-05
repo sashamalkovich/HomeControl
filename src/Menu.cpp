@@ -73,12 +73,10 @@ void Menu::mainMenu()
 
     pParamArray = runCore();
 
-
     if (saveMode)
     {
         pLcd->setCursor(0, 0);
         pLcd->print("S");
-        
     }
     else
     {
@@ -377,12 +375,12 @@ void Menu::programsMenu()
         else if (drainON == 2)
         {
             pLcd->setCursor(14, 3);
-            pLcd->print("FL TA ");
+            pLcd->print("FL HT ");
         }
         else if (drainON == 3)
         {
             pLcd->setCursor(14, 3);
-            pLcd->print("DR TA ");
+            pLcd->print("DR HT ");
         }
         sendIter();
         enc = encoder() % 4;
@@ -525,6 +523,8 @@ void Menu::timeMenu()
         pLcd->setCursor(0, (enc - 1) % 3);
         pLcd->print("  ");
         pLcd->setCursor(0, (enc + 1) % 3);
+        pLcd->print("  ");
+        pLcd->setCursor(0, (enc + 2) % 3);
         pLcd->print("  ");
         if (knob2state(ESCAPE_KNOB_PIN))
         {

@@ -85,8 +85,6 @@ private:
     volatile int pinAValue; // Переменные хранящие состояние пина, для экономии времени
     volatile int pinBValue;
 
-    int ttemp;
-
     void lcdOnOff();
 
     void drenageFUNC();

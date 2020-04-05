@@ -179,7 +179,6 @@ void HomeCore::lcdOnOff()
 
 int **HomeCore::runCore()
 {
-    static int lastData = 0;
     static bool on = false, off = false;
     static bool trig = false, trig1 = false;
     sendIter();
@@ -270,10 +269,23 @@ int **HomeCore::runCore()
 
     if (paramArray[3][3] == 1)
     {
+        
         drenageOnOff();
     }
-
-    drenageFUNC();
+    static bool trg = false;
+    if (drenage)
+    {
+        drenageFUNC();
+        trg = false;
+    }
+    else
+    {
+        if (!trg)
+        {
+            drenageStopFunc();
+            trg = true;
+        }
+    }
 
     waterLevel(paramArray[1][0]);
 
@@ -433,50 +445,55 @@ void HomeCore::drenageFUNC()
         drainON = 0;
         pLcd->clear();
         escape();
+        drenage = false;
     }
 
     if (drainON == 0)
     {
-        if (drenage && SS_1 < drenageStop && SS_2 > sLTankMin)
+        if (SS_1 < drenageStop && SS_2 > sLTankMin)
         {
             drain();
         }
         else
         {
             drenageStopFunc();
+            drenage = false;
         }
     }
     else if (drainON == 1)
     {
-        if (drenage && SS_1 > fillStop)
+        if (SS_1 > fillStop)
         {
             fill();
         }
         else
         {
             drenageStopFunc();
+            drenage = false;
         }
     }
     else if (drainON == 2)
     {
-        if (drenage && SS_1 > fillStop && SS_2 < 42)
+        if (SS_1 > fillStop && SS_2 < 42)
         {
             fillHt();
         }
         else
         {
             drenageStopFunc();
+            drenage = false;
         }
     }
     else if (drainON == 3)
     {
-        if (drenage && SS_2 < 42)
+        if (SS_2 < 42)
         {
             drainHt();
         }
         else
         {
             drenageStopFunc();
+            drenage = false;
         }
     }
 }

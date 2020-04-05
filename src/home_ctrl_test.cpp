@@ -1,8 +1,6 @@
 #include <Arduino.h>
 #include "home_ctrl.h"
 
-char sym = '~';
-
 HomeCtrl homeCtrl;
 
 void setup()
