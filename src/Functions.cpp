@@ -29,12 +29,12 @@ void Functions::loadParam()
     DrenageStop = Pool::eDrenageStop;
     FillStop = Pool::eFillStop;
     Grow = Pool::eGrow;
+    timerOnOff = Pool::eTimer;
     light_0 = Pool::eLight_1;
     light_1 = Pool::eLight_2;
     light_2 = Pool::eLight_3;
-    lights = Pool::eLights;
+    timerOnOff ? lights = lights : lights = Pool::eLights;
     saveMode = Pool::eSaveMode;
-    timerOnOff = Pool::eTimer;
     sHTankMax = Pool::sHTankMax;
     sHTankMin = Pool::sHTankMin;
     sLTankMax = Pool::sLTankMax;

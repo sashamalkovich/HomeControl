@@ -250,7 +250,7 @@ int **HomeCore::runCore()
     {
         digitalWrite(RELAY_LIGHT_0, OFF);
         digitalWrite(RELAY_LIGHT_1, OFF);
-        digitalWrite(RELAY_LIGHT_1, OFF);
+        digitalWrite(RELAY_LIGHT_2, OFF);
     }
 
     if (paramArray[3][4] == 1)
@@ -393,26 +393,26 @@ void HomeCore::tempLighsOff()
 
     if (millis() - timer > 900000)
     {
-        if (paramArray[0][0] <= 28 && paramArray[0][1] <= 26 && !sw)
+        if (paramArray[0][0] <= 28 && paramArray[0][1] <= 26 && sw)
         {
             light_0 = Pool::eLight_1;
             light_1 = Pool::eLight_2;
             light_2 = Pool::eLight_3;
-            sw = true;
+            sw = false;
         }
         else if (paramArray[0][0] == 29 || paramArray[0][1] == 27)
         {
             light_0 = Pool::eLight_1;
             light_1 = false;
             light_2 = Pool::eLight_3;
-            sw = false;
+            sw = true;
         }
         else if (paramArray[0][0] > 29 || paramArray[0][1] > 27)
         {
             light_0 = false;
             light_1 = true;
             light_2 = false;
-            sw = false;
+            sw = true;
         }
         timer = millis();
     }
