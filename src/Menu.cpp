@@ -463,6 +463,8 @@ void Menu::settingsMenu()
         pLcd->print("  ");
         pLcd->setCursor(0, (enc + 1) % 4);
         pLcd->print("  ");
+        pLcd->setCursor(0, (enc + 2) % 4);
+        pLcd->print("  ");
 
         if (knob2state(ESCAPE_KNOB_PIN))
         {

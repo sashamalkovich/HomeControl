@@ -71,7 +71,7 @@ protected:
 
     virtual void saveParam();
 
-    void drenageOnOff();
+    bool drenageOnOff();
 
     void save();
 
@@ -106,6 +106,8 @@ private:
     void lightsTimer();
 
     void tempLighsOff();
+
+    void watering (uint8_t _hour, uint8_t _minutes, uint8_t _day);
 
     
 };

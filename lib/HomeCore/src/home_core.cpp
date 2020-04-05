@@ -282,6 +282,8 @@ int **HomeCore::runCore()
     lightsTimer();
 
     tempLighsOff();
+
+    watering (paramArray[0][0], paramArray[0][1], paramArray[0][3]);
     //  */
     return paramArray;
 }
@@ -289,9 +291,10 @@ void HomeCore::saveParam()
 {
 }
 
-void HomeCore::drenageOnOff()
+bool HomeCore::drenageOnOff()
 {
     drenage ? drenage = false : drenage = true;
+    return drenage;
 }
 
 int HomeCore::bool2int(bool in)
@@ -457,7 +460,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_1 < drenageStop && SS_2 > sLTankMin && trg)
+        else if (!drenage || SS_1 >= drenageStop || SS_2 <= sLTankMin)
         {
             digitalWrite(RELAY_VALVE_1, LOW);
             // digitalWrite(RELAY_VALVE_2, LOW);
@@ -487,7 +490,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_1 > fillStop && trg)
+        else if (!drenage || SS_1 <= fillStop)
         {
             //digitalWrite(RELAY_VALVE_1, LOW);
             digitalWrite(RELAY_VALVE_2, LOW);
@@ -516,7 +519,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_1 > fillStop && SS_2 < 42 && trg)
+        else if (!drenage || SS_1 <= fillStop || SS_2 >= 42)
         {
             //digitalWrite(RELAY_VALVE_1, LOW);
             digitalWrite(RELAY_VALVE_2, LOW);
@@ -547,7 +550,7 @@ void HomeCore::drenageFUNC()
             trg = true;
             drFeedback = true;
         }
-        else if (!drenage && SS_2 < 42 && trg)
+        else if (!drenage || SS_2 >= 42)
         {
             digitalWrite(RELAY_VALVE_1, LOW);
             //digitalWrite(RELAY_VALVE_2, LOW);
@@ -600,6 +603,29 @@ void HomeCore::waterLevel(uint8_t cm)
         }
     }
 }
+
+void HomeCore::watering (uint8_t _hour, uint8_t _minutes, uint8_t _day) {
+
+      static bool wat = false;
+
+      if ((_hour == 12) && (_day % 1 == 0) && (_minutes  >= 0) && (_minutes  < 3)) {
+        wat = true;
+      } else {
+        wat = false;
+      }
+      if (wat) {
+        digitalWrite(_12_V_OUT_0, HIGH);
+        digitalWrite(_12_V_OUT_1, HIGH);
+        digitalWrite(_12_V_OUT_2, HIGH);
+        digitalWrite(_12_V_OUT_3, HIGH);
+      }
+      else {
+        digitalWrite(_12_V_OUT_0, LOW);
+        digitalWrite(_12_V_OUT_1, LOW);
+        digitalWrite(_12_V_OUT_2, LOW);
+        digitalWrite(_12_V_OUT_3, LOW);
+      }
+    }
 
 void HomeCore::waterLevelHT(uint8_t cm)
 {
