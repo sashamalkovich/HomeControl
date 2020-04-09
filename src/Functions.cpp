@@ -7,7 +7,6 @@
 Functions::Functions() : Menu(), SerRes()
 {
     pSerResArr = new int[2];
-    loadParam();
 }
 
 Functions::~Functions()
@@ -17,6 +16,7 @@ Functions::~Functions()
 void Functions::setupFunc()
 {
     setupMenu();
+    loadParam();
 }
 
 void Functions::loadParam()
@@ -229,10 +229,10 @@ void Functions::exe_11(int in)
 
 void Functions::exe_12(int in)
 {
-    sendParam(); 
+    sendParam();
 }
 
 void Functions::exe_13(int in)
-{ 
-    resetFunc();   
+{
+    resetFunc();
 }

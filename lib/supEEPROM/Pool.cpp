@@ -19,7 +19,7 @@ bool Pool::eLight_1 = true;
 bool Pool::eLight_2 = true;
 bool Pool::eLight_3 = true;
 bool Pool::eLights = true;
-bool Pool::eSaveMode = true;
+bool Pool::eSaveMode = false;
 bool Pool::eTimer = true;
 
 

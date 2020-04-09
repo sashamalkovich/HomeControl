@@ -1,7 +1,8 @@
 #include "sup_eeprom.h"
 
 SupEEPROM::SupEEPROM() {
-    eDefPut();
+   //eDefPut();
+  // eGet();
 };
 
 SupEEPROM::~SupEEPROM() = default;
@@ -9,12 +10,12 @@ SupEEPROM::~SupEEPROM() = default;
 Pool SupEEPROM::pool;
 
 void SupEEPROM::ePut() {
-    EEPROM.put(0, pool);
+    EEPROM.put(0, SupEEPROM::pool);
 
 }
 
 void SupEEPROM::eGet() {
-    EEPROM.get(0, pool);
+    EEPROM.get(0, SupEEPROM::pool);
 }
 
 void SupEEPROM::eDefPut() {
@@ -35,5 +36,6 @@ void SupEEPROM::eDefPut() {
     Pool::sHTankMin = 4;
     Pool::sLTankMax = 6;
     Pool::sLTankMin = 4;
+    EEPROM.put(0, SupEEPROM::pool);
 
 }
