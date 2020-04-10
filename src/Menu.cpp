@@ -563,7 +563,6 @@ void Menu::timeSet()
 {
     bool trg = true;
     uint8_t enc;
-    bool temp;
     pLcd->clear();
     uint8_t sHour, sMinutes, sDate, sMonth, sYear;
 
@@ -578,7 +577,6 @@ void Menu::timeSet()
         sendIter();
 
         enc = (encoder() % 7);
-        temp = knob2state(ENCODER_KNOB);
 
         if (enc < 4)
         {
@@ -724,7 +722,6 @@ void Menu::timerSet()
 {
     bool trg = true;
     uint8_t enc;
-    bool temp;
     pLcd->clear();
 
     while (trg)
@@ -732,7 +729,6 @@ void Menu::timerSet()
         sendIter();
 
         enc = (encoder() % 5);
-        temp = knob2state(ENCODER_KNOB);
 
         if (enc < 4)
         {
@@ -836,7 +832,6 @@ void Menu::waterMenu()
 {
     bool trg = true;
     uint8_t enc;
-    bool temp;
     pLcd->clear();
 
     while (trg)
@@ -844,7 +839,6 @@ void Menu::waterMenu()
         sendIter();
 
         enc = (encoder() % 7);
-        temp = knob2state(ENCODER_KNOB);
 
         if (enc < 4)
         {

@@ -16,50 +16,83 @@ Functions::~Functions()
 void Functions::setupFunc()
 {
     setupMenu();
+    //eDef();
+    //ePut();
     loadParam();
+}
+
+void Functions::eGet()
+{
+    EEPROM.get(0, db);
+}
+
+void Functions::ePut()
+{
+    EEPROM.put(0, db);
+}
+
+void Functions::eDef()
+{
+    db.eBloomTimeMax = 20;
+    db.eBloomTimeMin = 8;
+    db.eDrenageStop = 24;
+    db.eFillStop = 8;
+    db.eGrow = false;
+    db.eGrowTimeMax = 22;
+    db.eGrowTimeMin = 6;
+    db.eLight_1 = true;
+    db.eLight_2 = true;
+    db.eLight_3 = true;
+    db.eLights = true;
+    db.eSaveMode = false;
+    db.eTimer = true;
+    db.sHTankMax = 36;
+    db.sHTankMin = 4;
+    db.sLTankMax = 6;
+    db.sLTankMin = 4;
 }
 
 void Functions::loadParam()
 {
     eGet();
-    GrowTimeMax = Pool::eGrowTimeMax;
-    GrowTimeMin = Pool::eGrowTimeMin;
-    BloomTimeMax = Pool::eBloomTimeMax;
-    BloomTimeMin = Pool::eBloomTimeMin;
-    DrenageStop = Pool::eDrenageStop;
-    FillStop = Pool::eFillStop;
-    Grow = Pool::eGrow;
-    timerOnOff = Pool::eTimer;
-    light_0 = Pool::eLight_1;
-    light_1 = Pool::eLight_2;
-    light_2 = Pool::eLight_3;
-    timerOnOff ? lights = lights : lights = Pool::eLights;
-    saveMode = Pool::eSaveMode;
-    sHTankMax = Pool::sHTankMax;
-    sHTankMin = Pool::sHTankMin;
-    sLTankMax = Pool::sLTankMax;
-    sLTankMin = Pool::sLTankMin;
+    GrowTimeMax = db.eGrowTimeMax;
+    GrowTimeMin = db.eGrowTimeMin;
+    BloomTimeMax = db.eBloomTimeMax;
+    BloomTimeMin = db.eBloomTimeMin;
+    DrenageStop = db.eDrenageStop;
+    FillStop = db.eFillStop;
+    Grow = db.eGrow;
+    timerOnOff = db.eTimer;
+    light_0 = db.eLight_1;
+    light_1 = db.eLight_2;
+    light_2 = db.eLight_3;
+    timerOnOff ? lights = lights : lights = db.eLights;
+    saveMode = db.eSaveMode;
+    sHTankMax = db.sHTankMax;
+    sHTankMin = db.sHTankMin;
+    sLTankMax = db.sLTankMax;
+    sLTankMin = db.sLTankMin;
 }
 
 void Functions::saveParam()
 {
-    Pool::eGrowTimeMax = GrowTimeMax;
-    Pool::eGrowTimeMin = GrowTimeMin;
-    Pool::eBloomTimeMax = BloomTimeMax;
-    Pool::eBloomTimeMin = BloomTimeMin;
-    Pool::eDrenageStop = DrenageStop;
-    Pool::eFillStop = FillStop;
-    Pool::eGrow = Grow;
-    Pool::eLight_1 = light_0;
-    Pool::eLight_2 = light_1;
-    Pool::eLight_3 = light_2;
-    Pool::eLights = lights;
-    Pool::eSaveMode = saveMode;
-    Pool::eTimer = timerOnOff;
-    Pool::sHTankMax = sHTankMax;
-    Pool::sHTankMin = sHTankMin;
-    Pool::sLTankMax = sLTankMax;
-    Pool::sLTankMin = sLTankMin;
+    db.eGrowTimeMax = GrowTimeMax;
+    db.eGrowTimeMin = GrowTimeMin;
+    db.eBloomTimeMax = BloomTimeMax;
+    db.eBloomTimeMin = BloomTimeMin;
+    db.eDrenageStop = DrenageStop;
+    db.eFillStop = FillStop;
+    db.eGrow = Grow;
+    db.eLight_1 = light_0;
+    db.eLight_2 = light_1;
+    db.eLight_3 = light_2;
+    db.eLights = lights;
+    db.eSaveMode = saveMode;
+    db.eTimer = timerOnOff;
+    db.sHTankMax = sHTankMax;
+    db.sHTankMin = sHTankMin;
+    db.sLTankMax = sLTankMax;
+    db.sLTankMin = sLTankMin;
     ePut();
     pLcd->setCursor(10, 3);
     pLcd->print("SAVE");

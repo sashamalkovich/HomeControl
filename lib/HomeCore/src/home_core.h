@@ -7,9 +7,9 @@
 #include <Wire.h>
 #include <OneWire.h>
 #include "coreSetup.h"
-#include <sup_eeprom.h>
+#include "dataBase.h"
 
-class HomeCore : public SupEEPROM
+class HomeCore
 {
 
 public:
@@ -20,6 +20,7 @@ public:
     LiquidCrystal_I2C *pLcd;
 
 protected:
+    DataBase db;
     int *pTemp;
     int *pSS;
     int *timeArray;

@@ -8,6 +8,8 @@
 #include "Menu.h"
 #include <ser_res.h>
 #include <run_prog.h>
+#include <EEPROM.h>
+
 
 class Functions : public Menu, public SerRes, virtual public RunProg
 {
@@ -17,6 +19,7 @@ public:
     ~Functions();
 
 protected:
+   
     virtual void setupFunc();
     void loadParam();
     void saveParam() override;
@@ -35,6 +38,10 @@ protected:
     void exe_11(int) override;
     void exe_12(int) override;
     void exe_13(int) override;
+
+    void eGet();
+    void ePut();
+    void eDef();
 
 private:
     int *pSerResArr;
