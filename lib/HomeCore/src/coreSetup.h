@@ -7,7 +7,8 @@
 
 #include "coreDef.h"
 
-inline void  _setup() {
+inline void _setup()
+{
 
     pinMode(SS_PIN_OUT_0, OUTPUT);
     pinMode(SS_PIN_IN_0, INPUT);
@@ -24,22 +25,22 @@ inline void  _setup() {
     pinMode(RELAY_LIGHT_0, OUTPUT);
     pinMode(RELAY_LIGHT_1, OUTPUT);
     pinMode(RELAY_LIGHT_2, OUTPUT);
-    pinMode(RELAY_PUMP,    OUTPUT);
+    pinMode(RELAY_PUMP, OUTPUT);
+    pinMode(RELAY_PUMP_OUT, OUTPUT);
 
-    pinMode(ENCODER_PIN_0,   INPUT_PULLUP);
-    pinMode(ENCODER_PIN_1,   INPUT_PULLUP);
-    pinMode(ENCODER_KNOB,    INPUT_PULLUP);
-    pinMode(KNOB_0,          INPUT_PULLUP);
-    pinMode(KNOB_1,          INPUT_PULLUP);
-    pinMode(KNOB_2,          INPUT_PULLUP);
-    pinMode(SAVE_KNOB_PIN,   INPUT_PULLUP);
+    pinMode(ENCODER_PIN_0, INPUT_PULLUP);
+    pinMode(ENCODER_PIN_1, INPUT_PULLUP);
+    pinMode(ENCODER_KNOB, INPUT_PULLUP);
+    pinMode(KNOB_0, INPUT_PULLUP);
+    pinMode(KNOB_1, INPUT_PULLUP);
+    pinMode(KNOB_2, INPUT_PULLUP);
+    pinMode(SAVE_KNOB_PIN, INPUT_PULLUP);
     pinMode(ESCAPE_KNOB_PIN, INPUT_PULLUP);
 
     pinMode(_12_V_OUT_0, OUTPUT);
     pinMode(_12_V_OUT_1, OUTPUT);
     pinMode(_12_V_OUT_2, OUTPUT);
     pinMode(_12_V_OUT_3, OUTPUT);
-
 
     pinMode(SS_PIN_IN_1, INPUT);
     pinMode(SS_PIN_OUT_1, OUTPUT);
@@ -55,6 +56,7 @@ inline void  _setup() {
     digitalWrite(RELAY_LIGHT_1, OFF);
     digitalWrite(RELAY_LIGHT_2, OFF);
     digitalWrite(RELAY_PUMP, OFF);
+    digitalWrite(RELAY_PUMP_OUT, OFF);
 }
 
 #endif //HOMECORE_CORESETUP_H

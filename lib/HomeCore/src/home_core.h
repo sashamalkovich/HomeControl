@@ -88,7 +88,7 @@ protected:
 
     void waterCycleAdd();
 
-    void waterWatering();
+    void waterWatering(uint8_t , uint8_t , uint8_t);
 
 private:
     int **paramArray;

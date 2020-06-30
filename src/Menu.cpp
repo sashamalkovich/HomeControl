@@ -362,15 +362,37 @@ void Menu::programsMenu()
             pLcd->print("PROGRAMMS");
             pLcd->setCursor(5, 1);
             pLcd->print("MODE ");
+            pLcd->setCursor(14, 0);
+            pLcd->print("     ");
             pLcd->setCursor(14, 1);
             Grow ? pLcd->print("GROW ") : pLcd->print("BLOOM ");
             pLcd->setCursor(14, 2);
-            timerOnOff ? pLcd->print("ON ") : pLcd->print("OFF ");
+            timerOnOff ? pLcd->print("ON   ") : pLcd->print("OFF   ");
             pLcd->setCursor(5, 2);
             pLcd->print("TIMER ");
             pLcd->setCursor(5, 3);
             pLcd->print("WATER ");
             pLcd->setCursor(14, 3);
+            if (drainON == 0)
+        {
+            pLcd->setCursor(14, 3);
+            pLcd->print("DRAIN ");
+        }
+        else if (drainON == 1)
+        {
+            pLcd->setCursor(14, 3);
+            pLcd->print("FILL  ");
+        }
+        else if (drainON == 2)
+        {
+            pLcd->setCursor(14, 3);
+            pLcd->print("FL HT ");
+        }
+        else if (drainON == 3)
+        {
+            pLcd->setCursor(14, 3);
+            pLcd->print("DR HT ");
+        }
         }
         else
         {
@@ -381,7 +403,7 @@ void Menu::programsMenu()
             pLcd->setCursor(0, 2);
             pLcd->print("  ");
             pLcd->setCursor(5, 0);
-            pLcd->print("MODE ");
+            pLcd->print("MODE      ");
             pLcd->setCursor(14, 0);
             Grow ? pLcd->print("GROW ") : pLcd->print("BLOOM ");
             pLcd->setCursor(14, 1);
@@ -392,27 +414,27 @@ void Menu::programsMenu()
             pLcd->print("WATER ");
             pLcd->setCursor(5, 3);
             pLcd->print("WATWA ");
-        }
 
-        if (drainON == 0)
-        {
-            pLcd->setCursor(14, 2);
-            pLcd->print("DRAIN ");
-        }
-        else if (drainON == 1)
-        {
-            pLcd->setCursor(14, 2);
-            pLcd->print("FILL  ");
-        }
-        else if (drainON == 2)
-        {
-            pLcd->setCursor(14, 2);
-            pLcd->print("FL HT ");
-        }
-        else if (drainON == 3)
-        {
-            pLcd->setCursor(14, 2);
-            pLcd->print("DR HT ");
+            if (drainON == 0)
+            {
+                pLcd->setCursor(14, 2);
+                pLcd->print("DRAIN ");
+            }
+            else if (drainON == 1)
+            {
+                pLcd->setCursor(14, 2);
+                pLcd->print("FILL  ");
+            }
+            else if (drainON == 2)
+            {
+                pLcd->setCursor(14, 2);
+                pLcd->print("FL HT ");
+            }
+            else if (drainON == 3)
+            {
+                pLcd->setCursor(14, 2);
+                pLcd->print("DR HT ");
+            }
         }
 
         if (knob2state(ESCAPE_KNOB_PIN))
@@ -485,7 +507,7 @@ void Menu::wateringOut()
             pLcd->setCursor(5, 2);
             pLcd->print("MIN START");
             pLcd->setCursor(15, 2);
-            pLcd->print(oHourStart);
+            pLcd->print(oMinuteStart);
             pLcd->print(" ");
             pLcd->setCursor(5, 3);
             pLcd->print("LENGTH   ");
@@ -560,10 +582,10 @@ void Menu::wateringOut()
                 oHourStart = uniParam(24, 15, 1);
                 break;
             case 2:
-                oMinuteStart = uniParam(24, 15, 2);
+                oMinuteStart = uniParam(60, 15, 2);
                 break;
             case 3:
-                oMinuteLenght = uniParam(24, 15, 3);
+                oMinuteLenght = uniParam(60, 15, 3);
                 break;
             case 4:
                 oOnOff ? oOnOff = false : oOnOff = true;

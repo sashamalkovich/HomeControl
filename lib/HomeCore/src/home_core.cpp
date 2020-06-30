@@ -295,12 +295,13 @@ int **HomeCore::runCore()
 
     tempLighsOff();
 
-    watering(paramArray[0][0], paramArray[0][1], paramArray[0][3]);
+   // watering(paramArray[0][0], paramArray[0][1], paramArray[0][3]);
 
     if (oOnOff)
     {
-        waterWatering();
+        waterWatering(paramArray[2][0], paramArray[2][1], paramArray[2][3]);
     }
+    
     return paramArray;
 }
 void HomeCore::saveParam()
@@ -658,7 +659,7 @@ void HomeCore::waterLevelHT(uint8_t cm)
 
     if ((cm > sHTankMax + 2) || (cm < sHTankMin - 1))
     {
-        digitalWrite(RELAY_VALVE_6, OFF);
+        digitalWrite(RELAY_VALVE_7, OFF);
         pLcd->setCursor(3, 3);
         pLcd->print("E");
     }
@@ -689,11 +690,11 @@ void HomeCore::waterLevelHT(uint8_t cm)
     }
 }
 
-void HomeCore::waterWatering()
+void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day)
 {
     static bool sw = false, on = false;
 
-    if (paramArray[0][0] == oHourStart && paramArray[0][1] >= oMinuteStart && paramArray[0][1] <= oMinuteStart + oMinuteLenght)
+    if (hour == oHourStart && min >= oMinuteStart && min <= oMinuteStart + oMinuteLenght)
     {
         on = true;
     }
@@ -702,12 +703,12 @@ void HomeCore::waterWatering()
         on = false;
     }
 
-    if (on && !sw)
+    if (on)
     {
         digitalWrite(RELAY_PUMP_OUT, ON);
         sw = true;
     }
-    else if (!on && sw)
+    else
     {
         digitalWrite(RELAY_PUMP_OUT, OFF);
         sw = false;
