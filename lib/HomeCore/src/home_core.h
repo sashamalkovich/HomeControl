@@ -52,6 +52,12 @@ protected:
     uint8_t sHTankMin;
     uint8_t sLTankMin;
     uint8_t sLTankMax;
+
+    uint8_t oHourStart;
+    uint8_t oMinuteStart;
+    uint8_t oMinuteLenght;
+    bool oOnOff;
+
     bool drFeedback;
 
     virtual void setupCore();
@@ -81,6 +87,8 @@ protected:
     unsigned int waterCycleGet();
 
     void waterCycleAdd();
+
+    void waterWatering();
 
 private:
     int **paramArray;

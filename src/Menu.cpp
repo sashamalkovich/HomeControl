@@ -345,52 +345,76 @@ void Menu::programsMenu()
 {
     uint8_t enc;
     bool trg = true;
-    pLcd->setCursor(5, 0);
-    pLcd->print("PROGRAMMS");
 
     while (trg)
     {
-        pLcd->setCursor(5, 1);
-        pLcd->print("MODE ");
-        pLcd->setCursor(14, 1);
-        Grow ? pLcd->print("GROW ") : pLcd->print("BLOOM ");
-        pLcd->setCursor(14, 2);
-        timerOnOff ? pLcd->print("ON ") : pLcd->print("OFF ");
-        pLcd->setCursor(5, 2);
-        pLcd->print("TIMER ");
-        pLcd->setCursor(5, 3);
-        pLcd->print("WATER ");
-        pLcd->setCursor(14, 3);
+        sendIter();
+        enc = encoder() % 5;
+        if (enc < 4)
+        {
+            pLcd->setCursor(0, enc);
+            pLcd->print("=>");
+            pLcd->setCursor(0, (enc - 1) % 4);
+            pLcd->print("  ");
+            pLcd->setCursor(0, (enc + 1) % 4);
+            pLcd->print("  ");
+            pLcd->setCursor(5, 0);
+            pLcd->print("PROGRAMMS");
+            pLcd->setCursor(5, 1);
+            pLcd->print("MODE ");
+            pLcd->setCursor(14, 1);
+            Grow ? pLcd->print("GROW ") : pLcd->print("BLOOM ");
+            pLcd->setCursor(14, 2);
+            timerOnOff ? pLcd->print("ON ") : pLcd->print("OFF ");
+            pLcd->setCursor(5, 2);
+            pLcd->print("TIMER ");
+            pLcd->setCursor(5, 3);
+            pLcd->print("WATER ");
+            pLcd->setCursor(14, 3);
+        }
+        else
+        {
+            pLcd->setCursor(0, 3);
+            pLcd->print("=>");
+            pLcd->setCursor(0, 0);
+            pLcd->print("  ");
+            pLcd->setCursor(0, 2);
+            pLcd->print("  ");
+            pLcd->setCursor(5, 0);
+            pLcd->print("MODE ");
+            pLcd->setCursor(14, 0);
+            Grow ? pLcd->print("GROW ") : pLcd->print("BLOOM ");
+            pLcd->setCursor(14, 1);
+            timerOnOff ? pLcd->print("ON ") : pLcd->print("OFF ");
+            pLcd->setCursor(5, 1);
+            pLcd->print("TIMER ");
+            pLcd->setCursor(5, 2);
+            pLcd->print("WATER ");
+            pLcd->setCursor(5, 3);
+            pLcd->print("WATWA ");
+        }
 
         if (drainON == 0)
         {
-            pLcd->setCursor(14, 3);
+            pLcd->setCursor(14, 2);
             pLcd->print("DRAIN ");
         }
         else if (drainON == 1)
         {
-            pLcd->setCursor(14, 3);
+            pLcd->setCursor(14, 2);
             pLcd->print("FILL  ");
         }
         else if (drainON == 2)
         {
-            pLcd->setCursor(14, 3);
+            pLcd->setCursor(14, 2);
             pLcd->print("FL HT ");
         }
         else if (drainON == 3)
         {
-            pLcd->setCursor(14, 3);
+            pLcd->setCursor(14, 2);
             pLcd->print("DR HT ");
         }
-        sendIter();
-        enc = encoder() % 4;
 
-        pLcd->setCursor(0, enc);
-        pLcd->print("=>");
-        pLcd->setCursor(0, (enc - 1) % 4);
-        pLcd->print("  ");
-        pLcd->setCursor(0, (enc + 1) % 4);
-        pLcd->print("  ");
         if (knob2state(ESCAPE_KNOB_PIN))
         {
             page = 0;
@@ -426,6 +450,123 @@ void Menu::programsMenu()
             case 3:
                 ++drainON;
                 drainON = drainON % 4;
+                break;
+            case 4:
+                wateringOut();
+                break;
+            }
+        }
+    }
+}
+
+void Menu::wateringOut()
+{
+    bool trg = true;
+    uint8_t enc;
+    pLcd->clear();
+
+    while (trg)
+    {
+        sendIter();
+
+        enc = (encoder() % 5);
+
+        if (enc < 4)
+        {
+            pLcd->setCursor(5, 0);
+            pLcd->print("START SET");
+            pLcd->setCursor(15, 0);
+            pLcd->print("  ");
+            pLcd->setCursor(5, 1);
+            pLcd->print("HOUR SET ");
+            pLcd->setCursor(15, 1);
+            pLcd->print(oHourStart);
+            pLcd->print(" ");
+            pLcd->setCursor(5, 2);
+            pLcd->print("MIN START");
+            pLcd->setCursor(15, 2);
+            pLcd->print(oHourStart);
+            pLcd->print(" ");
+            pLcd->setCursor(5, 3);
+            pLcd->print("LENGTH   ");
+            pLcd->setCursor(15, 3);
+            pLcd->print(oMinuteLenght);
+            pLcd->print(" ");
+        }
+        else if (enc == 4)
+        {
+            pLcd->setCursor(5, 0);
+            pLcd->print("HOUR SET");
+            pLcd->setCursor(15, 0);
+            pLcd->print(oHourStart);
+            pLcd->print(" ");
+            pLcd->setCursor(5, 1);
+            pLcd->print("MIN START");
+            pLcd->setCursor(15, 1);
+            pLcd->print(oMinuteStart);
+            pLcd->print(" ");
+            pLcd->setCursor(5, 2);
+            pLcd->print("LENGTH   ");
+            pLcd->setCursor(15, 2);
+            pLcd->print(oMinuteLenght);
+            pLcd->print(" ");
+            pLcd->setCursor(5, 3);
+            pLcd->print("ON/OFF");
+            pLcd->setCursor(15, 3);
+            oOnOff ? pLcd->print("ON ") : pLcd->print("OFF");
+            pLcd->print(" ");
+        }
+
+        if (enc < 4)
+        {
+            pLcd->setCursor(0, enc);
+            pLcd->print("=>");
+            pLcd->setCursor(0, (enc - 1) % 4);
+            pLcd->print("  ");
+            pLcd->setCursor(0, (enc + 1) % 4);
+            pLcd->print("  ");
+            pLcd->setCursor(0, (enc + 2) % 4);
+            pLcd->print("  ");
+        }
+        else
+        {
+            pLcd->setCursor(0, 3);
+            pLcd->print("=>");
+            pLcd->setCursor(0, 2);
+            pLcd->print("  ");
+            pLcd->setCursor(0, 0);
+            pLcd->print("  ");
+            pLcd->setCursor(0, 1);
+            pLcd->print("  ");
+        }
+        if (knob2state(ESCAPE_KNOB_PIN))
+        {
+            page = 0;
+            trg = false;
+            pLcd->clear();
+            mainMenu();
+        }
+        if (knob2state(ENCODER_KNOB))
+        {
+            switch (enc)
+            {
+            case 0:
+                page = 0;
+                trg = false;
+                pLcd->clear();
+                settingsMenu();
+                break;
+            case 1:
+                oHourStart = uniParam(24, 15, 1);
+                break;
+            case 2:
+                oMinuteStart = uniParam(24, 15, 2);
+                break;
+            case 3:
+                oMinuteLenght = uniParam(24, 15, 3);
+                break;
+            case 4:
+                oOnOff ? oOnOff = false : oOnOff = true;
                 break;
             }
         }

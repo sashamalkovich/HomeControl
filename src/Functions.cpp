@@ -50,6 +50,10 @@ void Functions::eDef()
     db.sHTankMin = 4;
     db.sLTankMax = 6;
     db.sLTankMin = 4;
+    db.oHourStart = 15;
+    db.oMinuteStart = 0;
+    db.oMinuteLenght = 10;
+    db.oOnOff = false;
 }
 
 void Functions::loadParam()
@@ -72,6 +76,10 @@ void Functions::loadParam()
     sHTankMin = db.sHTankMin;
     sLTankMax = db.sLTankMax;
     sLTankMin = db.sLTankMin;
+    oHourStart = db.oHourStart;
+    oMinuteStart = db.oMinuteStart;
+    oMinuteLenght = db.oMinuteLenght;
+    oOnOff = db.oOnOff;
 }
 
 void Functions::saveParam()
@@ -93,6 +101,10 @@ void Functions::saveParam()
     db.sHTankMin = sHTankMin;
     db.sLTankMax = sLTankMax;
     db.sLTankMin = sLTankMin;
+    db.oHourStart = oHourStart;
+    db.oMinuteStart = oMinuteStart;
+    db.oMinuteLenght = oMinuteLenght;
+    db.oOnOff = oOnOff;
     ePut();
     pLcd->setCursor(10, 3);
     pLcd->print("SAVE");

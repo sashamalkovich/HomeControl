@@ -19,4 +19,8 @@ struct DataBase
     uint8_t eDrenageStop;
     uint8_t eFillStop;
     bool eSaveMode;
+    uint8_t oHourStart;
+    uint8_t oMinuteStart;
+    uint8_t oMinuteLenght;
+    bool oOnOff;
 };

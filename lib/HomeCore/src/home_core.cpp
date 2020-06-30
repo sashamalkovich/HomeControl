@@ -296,7 +296,11 @@ int **HomeCore::runCore()
     tempLighsOff();
 
     watering(paramArray[0][0], paramArray[0][1], paramArray[0][3]);
-    //  */
+
+    if (oOnOff)
+    {
+        waterWatering();
+    }
     return paramArray;
 }
 void HomeCore::saveParam()
@@ -474,7 +478,7 @@ void HomeCore::drenageFUNC()
     }
     else if (drainON == 2)
     {
-        if (SS_1 > fillStop && SS_2 < 42)
+        if (SS_1 > sLTankMin && SS_2 < 42)
         {
             fillHt();
         }
@@ -665,7 +669,7 @@ void HomeCore::waterLevelHT(uint8_t cm)
         {
             if (!trig)
             {
-                digitalWrite(RELAY_VALVE_6, ON);
+                digitalWrite(RELAY_VALVE_7, ON);
                 pLcd->setCursor(3, 3);
                 pLcd->print("W");
                 trig = true;
@@ -676,11 +680,36 @@ void HomeCore::waterLevelHT(uint8_t cm)
         {
             if (trig)
             {
-                digitalWrite(RELAY_VALVE_6, OFF);
+                digitalWrite(RELAY_VALVE_7, OFF);
                 pLcd->setCursor(3, 3);
                 pLcd->print("  ");
                 trig = false;
             }
         }
+    }
+}
+
+void HomeCore::waterWatering()
+{
+    static bool sw = false, on = false;
+
+    if (paramArray[0][0] == oHourStart && paramArray[0][1] >= oMinuteStart && paramArray[0][1] <= oMinuteStart + oMinuteLenght)
+    {
+        on = true;
+    }
+    else
+    {
+        on = false;
+    }
+
+    if (on && !sw)
+    {
+        digitalWrite(RELAY_PUMP_OUT, ON);
+        sw = true;
+    }
+    else if (!on && sw)
+    {
+        digitalWrite(RELAY_PUMP_OUT, OFF);
+        sw = false;
     }
 }

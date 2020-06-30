@@ -14,7 +14,11 @@
 #define RELAY_VALVE_4 30
 #define RELAY_VALVE_5 33
 #define RELAY_VALVE_6 31
+#define RELAY_VALVE_7 37
+
 #define RELAY_PUMP    28
+#define RELAY_PUMP_OUT    35
+
 
 #define KNOB_0 32
 #define KNOB_1 38
@@ -27,7 +31,7 @@
 
 #define RELAY_LIGHT_0 22
 #define RELAY_LIGHT_1 24
-#define RELAY_LIGHT_2 26
+#define RELAY_LIGHT_2 31//26
 
 
 #define _12_V_OUT_0 23

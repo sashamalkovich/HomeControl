@@ -32,6 +32,7 @@ private:
 
     void timeMenu();
     void waterMenu();
+    void wateringOut();
     void timeSet();
     void timerSet();
     void saveTime(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t);
