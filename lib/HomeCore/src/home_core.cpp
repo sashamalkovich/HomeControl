@@ -295,7 +295,7 @@ int **HomeCore::runCore()
 
     tempLighsOff();
 
-   // watering(paramArray[0][0], paramArray[0][1], paramArray[0][3]);
+   watering(paramArray[2][0], paramArray[2][1], paramArray[2][3]);
 
     if (oOnOff)
     {
@@ -629,7 +629,7 @@ void HomeCore::watering(uint8_t _hour, uint8_t _minutes, uint8_t _day)
 
     static bool wat = false;
 
-    if ((_hour == 12) && (_day % 1 == 0) && (_minutes >= 0) && (_minutes < 3))
+    if ((_hour == 12) && (_day % 1 == 0) && (_minutes >= 0) && (_minutes < 5))
     {
         wat = true;
     }
