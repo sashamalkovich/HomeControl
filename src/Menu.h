@@ -39,9 +39,6 @@ private:
 
     uint8_t uniParam(uint8_t, uint8_t, uint8_t);
 
-    
-
-private:
     uint8_t page;
 };
 

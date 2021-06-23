@@ -705,12 +705,14 @@ void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day)
 
     if (on)
     {
-        digitalWrite(RELAY_PUMP_OUT, ON);
+        digitalWrite(_12_V_OUT_0, HIGH);
+        //digitalWrite(RELAY_PUMP_OUT, ON);
         sw = true;
     }
     else
     {
-        digitalWrite(RELAY_PUMP_OUT, OFF);
+        digitalWrite(_12_V_OUT_0, LOW);
+        //digitalWrite(RELAY_PUMP_OUT, OFF);
         sw = false;
     }
 }
