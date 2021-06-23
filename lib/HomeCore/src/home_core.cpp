@@ -295,7 +295,7 @@ int **HomeCore::runCore()
 
     tempLighsOff();
 
-   watering(paramArray[2][0], paramArray[2][1], paramArray[2][3]);
+   //watering(paramArray[2][0], paramArray[2][1], paramArray[2][3]);
 
     if (oOnOff)
     {
