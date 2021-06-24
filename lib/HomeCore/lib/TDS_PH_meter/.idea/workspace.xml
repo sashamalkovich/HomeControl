@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="TDS_PH_meter" targetName="mega_CORE" />
+      <config projectName="TDS_PH_meter" targetName="TDS_PH_meter-size" />
+      <config projectName="TDS_PH_meter" targetName="TDS_PH_meter-upload" />
+      <config projectName="TDS_PH_meter" targetName="upload" />
+      <config projectName="TDS_PH_meter" targetName="TDS_PH_meter-burn" />
+      <config projectName="TDS_PH_meter" targetName="TDS_PH_meter" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="522ba423-63b8-463d-ad3d-a684fee916d7" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1uO8nNqRvVCDdsUbtlgNrEBc4LX" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="CMake Application.upload">
+    <configuration name="TDS_PH_meter-burn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TDS_PH_meter" TARGET_NAME="TDS_PH_meter-burn" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TDS_PH_meter-size" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TDS_PH_meter" TARGET_NAME="TDS_PH_meter-size" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TDS_PH_meter-upload" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TDS_PH_meter" TARGET_NAME="TDS_PH_meter-upload" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TDS_PH_meter" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TDS_PH_meter" TARGET_NAME="TDS_PH_meter" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TDS_PH_meter" RUN_TARGET_NAME="TDS_PH_meter">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mega_CORE" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TDS_PH_meter" TARGET_NAME="mega_CORE" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="upload" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TDS_PH_meter" TARGET_NAME="upload" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.mega_CORE" />
+      <item itemvalue="CMake Application.TDS_PH_meter" />
+      <item itemvalue="CMake Application.TDS_PH_meter-burn" />
+      <item itemvalue="CMake Application.TDS_PH_meter-size" />
+      <item itemvalue="CMake Application.TDS_PH_meter-upload" />
+      <item itemvalue="CMake Application.upload" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="522ba423-63b8-463d-ad3d-a684fee916d7" name="Default Changelist" comment="" />
+      <created>1624525440974</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1624525440974</updated>
+      <workItem from="1624525443916" duration="12421000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

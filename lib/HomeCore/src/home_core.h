@@ -8,8 +8,9 @@
 #include <OneWire.h>
 #include "coreSetup.h"
 #include "dataBase.h"
+#include "tds_ph_meter.h"
 
-class HomeCore
+class HomeCore : TdsPhMeter
 {
 
 public:
@@ -60,6 +61,8 @@ protected:
 
     bool drFeedback;
 
+    float phTds[2] = {0, 0};
+
     virtual void setupCore();
 
     virtual int *getTemp();
@@ -100,7 +103,7 @@ private:
 
     unsigned int waterCycles;
 
-    void lcdOnOff();
+    virtual void lcdOnOff();
 
     void drenageFUNC();
 

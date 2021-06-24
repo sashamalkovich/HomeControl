@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/macbook/CLionProjects/TDS_PH_meter/def.h
+
+/Users/macbook/CLionProjects/TDS_PH_meter/tds_ph_meter.cpp
+tds_ph_meter.h
+/Users/macbook/CLionProjects/TDS_PH_meter/tds_ph_meter.h
+
+/Users/macbook/CLionProjects/TDS_PH_meter/tds_ph_meter.h
+Arduino.h
+-
+def.h
+/Users/macbook/CLionProjects/TDS_PH_meter/def.h
+

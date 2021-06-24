@@ -1,0 +1,8 @@
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/TDS_PH_meter-burn.dir
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/TDS_PH_meter-size.dir
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/upload.dir
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/TDS_PH_meter-upload.dir
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/TDS_PH_meter.dir
+/Users/macbook/CLionProjects/TDS_PH_meter/cmake-build-debug/CMakeFiles/mega_CORE.dir

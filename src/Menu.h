@@ -24,6 +24,8 @@ protected:
     
 
 private:
+    int menuState();
+    void standbyMenu();
     void mainMenu();
     void page0Menu();
     void lightsMenu();
