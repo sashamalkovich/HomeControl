@@ -158,6 +158,19 @@ void HomeCore::lcdOnOff() {
   }
 }
 
+void HomeCore::lcdOnOff(bool onOf) {
+  static bool onOff = onOf;
+  if (onOff) {
+    pLcd->display();
+    pLcd->setBacklight(true);
+    
+  } else {
+    pLcd->noDisplay();
+    pLcd->setBacklight(false);
+    
+  }
+}
+
 int **HomeCore::runCore() {
   static bool on = false, off = false;
   static bool trig = false, trig1 = false;

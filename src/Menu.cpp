@@ -58,19 +58,30 @@ void Menu::menu()
     }
     if (pParamArray[3][0] == 1)
     {
-        page = 2;
+        if(menuState() == 0){
+            page = 2;
+        }
+         else {
+            page = 3;
+        }
     }
 
     switch (page)
     {
     case 0:
+        lcdOnOff(true);
         mainMenu();
         break;
     case 1:
+        lcdOnOff(true);
         page0Menu();
         break;
     case 2:
+        lcdOnOff(true);
         standbyMenu();
+        break;
+    case 3:
+        lcdOnOff(false);
         break;
     }
 }
@@ -78,10 +89,7 @@ void Menu::menu()
 int Menu::menuState(){
 
 static int count = 0;
-
-    if(pParamArray[3][0] == 1){
     count++;
-}
     return count % 3;
 }
 

@@ -93,6 +93,10 @@ protected:
 
     void waterWatering(uint8_t , uint8_t , uint8_t);
 
+    virtual void lcdOnOff();
+
+    virtual void lcdOnOff(bool);
+
 private:
     int **paramArray;
     int actualcount; // Временная переменная определяющая изменение основного счетчика
@@ -103,7 +107,6 @@ private:
 
     unsigned int waterCycles;
 
-    virtual void lcdOnOff();
 
     void drenageFUNC();
 
