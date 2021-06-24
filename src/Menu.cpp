@@ -56,6 +56,10 @@ void Menu::menu()
     {
         page = 1;
     }
+    if (pParamArray[3][0] == 1)
+    {
+        page = 2;
+    }
 
     switch (page)
     {
@@ -65,6 +69,54 @@ void Menu::menu()
     case 1:
         page0Menu();
         break;
+    case 2:
+        standbyMenu();
+        break;
+    }
+}
+
+int Menu::menuState(){
+
+static int count = 0;
+
+    if(pParamArray[3][0] == 1){
+    count++;
+}
+    return count % 3;
+}
+
+void Menu::standbyMenu(){
+    pParamArray = runCore();
+
+     pLcd->setCursor(6, 1);
+    if (pParamArray[2][0] < 10)
+    {
+        pLcd->print(0);
+        pLcd->print(pParamArray[2][0]);
+    }
+    else
+    {
+        pLcd->print(pParamArray[2][0]);
+    }
+    pLcd->print(":");
+    if (pParamArray[2][1] < 10)
+    {
+        pLcd->print(0);
+        pLcd->print(pParamArray[2][1]);
+    }
+    else
+    {
+        pLcd->print(pParamArray[2][1]);
+    }
+    pLcd->print(":");
+    if (pParamArray[2][2] < 10)
+    {
+        pLcd->print(0);
+        pLcd->print(pParamArray[2][2]);
+    }
+    else
+    {
+        pLcd->print(pParamArray[2][2]);
     }
 }
 
@@ -131,6 +183,13 @@ void Menu::mainMenu()
     pLcd->print("Wt ");
     pLcd->print(pParamArray[0][1]);
     pLcd->print("C ");
+    pLcd->setCursor(14, 3);
+    /*
+    pLcd->print(phTds[0]);
+    pLcd->setCursor(7, 3);
+    pLcd->print(phTds[1]);
+    */
+    
 
     if (lights)
     {
