@@ -1,7 +1,6 @@
 //
 // Created by macbook on 2020-03-07.
 //
-////????????
 
 #include "Menu.h"
 
@@ -47,23 +46,33 @@ uint8_t Menu::uniParam(uint8_t encRes, uint8_t posCol, uint8_t posStr)
 
 void Menu::menu()
 {
+    static uint32_t timer = millis();
+
+    if(millis() - timer > 60000U){
+        pLcd->clear();
+        page = 3;
+        timer = millis();
+    }
     pParamArray = runCore();
 
     if (pParamArray[3][5] == 1)
     {
         page = 0;
+        timer = millis();
     }
     if (pParamArray[3][6] == 1)
     {
         page = 1;
+        timer = millis();
     }
     if (pParamArray[3][0] == 1)
     {
         int sw = menuState();
+        timer = millis();
 
             if(sw == 0){
                 pLcd->clear();
-                page = 2;
+                page = 0;
             }
             else if (sw == 1){
                 pLcd->clear();
@@ -71,7 +80,7 @@ void Menu::menu()
             }
             else{
                 pLcd->clear();
-                page = 0;
+                page = 2;
             }
     }
 
