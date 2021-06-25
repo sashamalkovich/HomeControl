@@ -159,8 +159,8 @@ void HomeCore::lcdOnOff() {
 }
 
 void HomeCore::lcdOnOff(bool onOf) {
-  static bool onOff = onOf;
-  if (onOff) {
+  
+  if (onOf) {
     pLcd->display();
     pLcd->setBacklight(true);
     

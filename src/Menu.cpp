@@ -7,7 +7,7 @@
 Menu::Menu()
 {
     pParamArray = new int *[6];
-    page = 0;
+    page = 2;
     for (int i = 0; i < 6; i++)
     {
         for (int y = 0; y < 6; y++)
@@ -58,17 +58,26 @@ void Menu::menu()
     }
     if (pParamArray[3][0] == 1)
     {
-        if(menuState() == 0){
-            page = 2;
-        }
-         else {
-            page = 3;
-        }
+        int sw = menuState();
+
+            if(sw == 0){
+                pLcd->clear();
+                page = 2;
+            }
+            else if (sw == 1){
+                pLcd->clear();
+                page = 3;
+            }
+            else{
+                pLcd->clear();
+                page = 0;
+            }
     }
 
     switch (page)
     {
     case 0:
+        
         lcdOnOff(true);
         mainMenu();
         break;
@@ -144,6 +153,15 @@ void Menu::mainMenu()
         pLcd->print(" ");
     }
 
+    pLcd->setCursor(0, 0);
+    pLcd->print("PH ");
+    pLcd->print(phTds[0]);
+    pLcd->print("   ");
+    pLcd->setCursor(10, 0);
+    pLcd->print("TD ");
+    pLcd->print((int)phTds[1]);
+    pLcd->print("   ");
+/*
     pLcd->setCursor(6, 0);
     if (pParamArray[2][0] < 10)
     {
@@ -174,7 +192,7 @@ void Menu::mainMenu()
     {
         pLcd->print(pParamArray[2][2]);
     }
-
+*/
     pLcd->setCursor(0, 1);
     pLcd->print("LT ");
     pLcd->print(pParamArray[1][0]);
