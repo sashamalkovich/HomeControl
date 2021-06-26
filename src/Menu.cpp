@@ -51,8 +51,8 @@ uint8_t Menu::uniParam(uint8_t startNum, uint8_t encRes, uint8_t posCol, uint8_t
     while (true)
     {
         sendIter();
-        enc = encoder() + startNum;
-        temp = (enc % encRes);
+        enc = encoder();
+        temp = (enc % encRes) + startNum;
         pLcd->setCursor(posCol, posStr);
         pLcd->print("      ");
         pLcd->setCursor(posCol, posStr);
