@@ -40,6 +40,7 @@ private:
     void saveTime(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t);
 
     uint8_t uniParam(uint8_t, uint8_t, uint8_t);
+    uint8_t uniParam(uint8_t, uint8_t, uint8_t, uint8_t);
 
     uint8_t page;
 };

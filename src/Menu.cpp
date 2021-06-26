@@ -44,6 +44,27 @@ uint8_t Menu::uniParam(uint8_t encRes, uint8_t posCol, uint8_t posStr)
     }
 }
 
+uint8_t Menu::uniParam(uint8_t startNum, uint8_t encRes, uint8_t posCol, uint8_t posStr)
+{
+    uint8_t temp, enc;
+
+    while (true)
+    {
+        sendIter();
+        enc = encoder() + startNum;
+        temp = (enc % encRes);
+        pLcd->setCursor(posCol, posStr);
+        pLcd->print("      ");
+        pLcd->setCursor(posCol, posStr);
+        pLcd->print(temp);
+        if (knob2state(ENCODER_KNOB))
+        {
+            return temp;
+        }
+    }
+}
+
+
 void Menu::menu()
 {
     static uint32_t timer = millis();
@@ -731,7 +752,7 @@ void Menu::wateringOut()
                 oOnOff ? oOnOff = false : oOnOff = true;
                 break;
             case 5:
-                oDays_Every= uniParam(3, 15, 3);
+                oDays_Every= uniParam(1, 5, 15, 3);
                 break;
             }
         }
