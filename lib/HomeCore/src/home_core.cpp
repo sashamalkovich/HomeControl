@@ -7,7 +7,7 @@ HomeCore::HomeCore() {
   pTemp = new int[2];
   pSS = new int[2];
   pTime = new iarduino_RTC(RTC_DS3231);
-  timeArray = new int[4];
+  timeArray = new int[8];
   knobON = new bool[6];
   paramArray = new int *[7];
   count = 0;
@@ -90,6 +90,7 @@ int *HomeCore::getTime() {
   timeArray[1] = pTime->minutes;
   timeArray[2] = pTime->seconds;
   timeArray[3] = pTime->day;
+  timeArray[4] = pTime->month;
   return timeArray;
 }
 

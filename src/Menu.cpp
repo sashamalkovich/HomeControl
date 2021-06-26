@@ -147,6 +147,20 @@ void Menu::standbyMenu(){
     {
         pLcd->print(pParamArray[2][2]);
     }
+
+    pLcd->setCursor(6, 2);
+    pLcd->print(pParamArray[2][3]);
+    pLcd->setCursor(9, 2);
+    pLcd->print(pParamArray[2][4]);
+    pLcd->setCursor(12, 2);
+    if (pParamArray[2][3] % oDays_Every == 0)
+    {
+        pLcd->print("!!");
+    }else{
+        pLcd->print("  ");
+    }
+    
+
 }
 
 void Menu::mainMenu()
