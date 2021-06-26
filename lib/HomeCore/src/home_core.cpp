@@ -188,7 +188,6 @@ int **HomeCore::runCore() {
   phTds[0] = getPH();
   phTds[1] = getTDS(paramArray[0][1]);
   paramArray[4][0] = encoder();
-
   
 
   if (paramArray[3][2] == 1) {
