@@ -48,7 +48,7 @@ void Menu::menu()
 {
     static uint32_t timer = millis();
 
-    if(millis() - timer > 60000U){
+    if(millis() - timer > 300000U){
         pLcd->clear();
         page = 3;
         timer = millis();
@@ -57,11 +57,13 @@ void Menu::menu()
 
     if (pParamArray[3][5] == 1)
     {
-        page = 0;
+        pLcd->clear();
+        page = 2;
         timer = millis();
     }
     if (pParamArray[3][6] == 1)
     {
+        pLcd->clear();
         page = 1;
         timer = millis();
     }
@@ -83,7 +85,7 @@ void Menu::menu()
                 page = 2;
             }
     }
-
+   
     switch (page)
     {
     case 0:
@@ -340,7 +342,9 @@ void Menu::page0Menu()
 
 void Menu::escape()
 {
-    page = 0;
+
+    pLcd->clear();
+    page = 2;
 }
 
 void Menu::lightsMenu()
