@@ -561,7 +561,7 @@ void HomeCore::waterLevelHT(uint8_t cm) {
   if ((cm > sHTankMax + 2) || (cm < sHTankMin - 1)) {
     digitalWrite(RELAY_VALVE_7, OFF);
     pLcd->setCursor(3, 3);
-    pLcd->print("E");
+    //pLcd->print("E");
   } else {
 
     if (cm > sHTankMin) // 36
@@ -569,7 +569,7 @@ void HomeCore::waterLevelHT(uint8_t cm) {
       if (!trig) {
         digitalWrite(RELAY_VALVE_7, ON);
         pLcd->setCursor(3, 3);
-        pLcd->print("W");
+        //pLcd->print("W");
         trig = true;
       }
     }

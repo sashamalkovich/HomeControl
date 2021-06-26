@@ -106,6 +106,52 @@ void Menu::menu()
                 page = 2;
             }
     }
+
+    if (lights)
+    {
+        digitalWrite(LED_BUILTIN, HIGH);
+        pLcd->setCursor(4, 3);
+        pLcd->print("LI ");
+    }
+    else
+    {
+        digitalWrite(LED_BUILTIN, LOW);
+        pLcd->setCursor(4, 3);
+        pLcd->print("  ");
+    }
+
+    if (light_0)
+    {
+        pLcd->setCursor(19, 0);
+        pLcd->print(".");
+    }
+    else
+    {
+        pLcd->setCursor(19, 0);
+        pLcd->print(" ");
+    }
+
+    if (light_1)
+    {
+        pLcd->setCursor(19, 1);
+        pLcd->print(".");
+    }
+    else
+    {
+        pLcd->setCursor(19, 1);
+        pLcd->print(" ");
+    }
+
+    if (light_2)
+    {
+        pLcd->setCursor(19, 2);
+        pLcd->print(".");
+    }
+    else
+    {
+        pLcd->setCursor(19, 2);
+        pLcd->print(" ");
+    }
    
     switch (page)
     {
@@ -263,52 +309,6 @@ void Menu::mainMenu()
     pLcd->print(phTds[1]);
     */
     
-
-    if (lights)
-    {
-        digitalWrite(LED_BUILTIN, HIGH);
-        pLcd->setCursor(4, 3);
-        pLcd->print("LI ");
-    }
-    else
-    {
-        digitalWrite(LED_BUILTIN, LOW);
-        pLcd->setCursor(4, 3);
-        pLcd->print("  ");
-    }
-
-    if (light_0)
-    {
-        pLcd->setCursor(19, 0);
-        pLcd->print(".");
-    }
-    else
-    {
-        pLcd->setCursor(19, 0);
-        pLcd->print(" ");
-    }
-
-    if (light_1)
-    {
-        pLcd->setCursor(19, 1);
-        pLcd->print(".");
-    }
-    else
-    {
-        pLcd->setCursor(19, 1);
-        pLcd->print(" ");
-    }
-
-    if (light_2)
-    {
-        pLcd->setCursor(19, 2);
-        pLcd->print(".");
-    }
-    else
-    {
-        pLcd->setCursor(19, 2);
-        pLcd->print(" ");
-    }
 }
 
 void Menu::page0Menu()
@@ -632,11 +632,11 @@ void Menu::wateringOut()
         if (enc < 4)
         {
             pLcd->setCursor(5, 0);
-            pLcd->print("START SET");
+            pLcd->print("WATERING ");
             pLcd->setCursor(15, 0);
             pLcd->print("  ");
             pLcd->setCursor(5, 1);
-            pLcd->print("HOUR SET ");
+            pLcd->print("HOUR     ");
             pLcd->setCursor(15, 1);
             pLcd->print(oHourStart);
             pLcd->print(" ");
@@ -654,22 +654,22 @@ void Menu::wateringOut()
         else if (enc == 4)
         {
             pLcd->setCursor(5, 0);
-            pLcd->print("HOUR    ");
+            pLcd->print("HOUR       ");
             pLcd->setCursor(15, 0);
             pLcd->print(oHourStart);
             pLcd->print(" ");
             pLcd->setCursor(5, 1);
-            pLcd->print("MIN     ");
+            pLcd->print("MIN        ");
             pLcd->setCursor(15, 1);
             pLcd->print(oMinuteStart);
             pLcd->print(" ");
             pLcd->setCursor(5, 2);
-            pLcd->print("LENGTH   ");
+            pLcd->print("LENGTH     ");
             pLcd->setCursor(15, 2);
             pLcd->print(oMinuteLenght);
             pLcd->print(" ");
             pLcd->setCursor(5, 3);
-            pLcd->print("ON/OFF    ");
+            pLcd->print("ON/OFF     ");
             pLcd->setCursor(15, 3);
             oOnOff ? pLcd->print("ON ") : pLcd->print("OFF");
             pLcd->print(" ");
