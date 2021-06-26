@@ -588,7 +588,7 @@ void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day) {
   static bool sw = false, on = false;
 
   if (hour == oHourStart && min >= oMinuteStart &&
-      min <= oMinuteStart + oMinuteLenght) {
+      min <= oMinuteStart + oMinuteLenght - 1) {
     on = true;
   } else {
     on = false;
