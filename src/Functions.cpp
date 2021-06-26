@@ -80,6 +80,7 @@ void Functions::loadParam()
     oMinuteStart = db.oMinuteStart;
     oMinuteLenght = db.oMinuteLenght;
     oOnOff = db.oOnOff;
+    oDays_Every = db.oDays_Every;
 }
 
 void Functions::saveParam()
@@ -105,6 +106,7 @@ void Functions::saveParam()
     db.oMinuteStart = oMinuteStart;
     db.oMinuteLenght = oMinuteLenght;
     db.oOnOff = oOnOff;
+    db.oDays_Every = oDays_Every;
     ePut();
     pLcd->setCursor(10, 3);
     pLcd->print("SAVE");

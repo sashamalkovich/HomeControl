@@ -512,7 +512,9 @@ void Menu::programsMenu()
             pLcd->setCursor(5, 2);
             pLcd->print("WATER ");
             pLcd->setCursor(5, 3);
-            pLcd->print("WATWA ");
+            pLcd->print("W OUT ");
+            pLcd->setCursor(14, 3);
+            pLcd->print("     ");
 
             if (drainON == 0)
             {
@@ -590,7 +592,7 @@ void Menu::wateringOut()
     {
         sendIter();
 
-        enc = (encoder() % 5);
+        enc = (encoder() % 6);
 
         if (enc < 4)
         {
@@ -617,12 +619,12 @@ void Menu::wateringOut()
         else if (enc == 4)
         {
             pLcd->setCursor(5, 0);
-            pLcd->print("HOUR SET");
+            pLcd->print("HOUR    ");
             pLcd->setCursor(15, 0);
             pLcd->print(oHourStart);
             pLcd->print(" ");
             pLcd->setCursor(5, 1);
-            pLcd->print("MIN START");
+            pLcd->print("MIN     ");
             pLcd->setCursor(15, 1);
             pLcd->print(oMinuteStart);
             pLcd->print(" ");
@@ -632,10 +634,35 @@ void Menu::wateringOut()
             pLcd->print(oMinuteLenght);
             pLcd->print(" ");
             pLcd->setCursor(5, 3);
-            pLcd->print("ON/OFF");
+            pLcd->print("ON/OFF    ");
             pLcd->setCursor(15, 3);
             oOnOff ? pLcd->print("ON ") : pLcd->print("OFF");
             pLcd->print(" ");
+        }
+        else if (enc == 5)
+        {
+            
+            pLcd->setCursor(5, 0);
+            pLcd->print("MIN     ");
+            pLcd->setCursor(15, 0);
+            pLcd->print(oMinuteStart);
+            pLcd->print(" ");
+            pLcd->setCursor(5, 1);
+            pLcd->print("LENGTH   ");
+            pLcd->setCursor(15, 1);
+            pLcd->print(oMinuteLenght);
+            pLcd->print(" ");
+            pLcd->setCursor(5, 2);
+            pLcd->print("ON/OFF    ");
+            pLcd->setCursor(15, 2);
+            oOnOff ? pLcd->print("ON ") : pLcd->print("OFF");
+            pLcd->print(" ");
+            pLcd->setCursor(5, 3);
+            pLcd->print("EVERY     ");
+            pLcd->setCursor(15, 3);
+            pLcd->print(oDays_Every);
+            pLcd->print(" ");
+            
         }
 
         if (enc < 4)
@@ -688,6 +715,9 @@ void Menu::wateringOut()
                 break;
             case 4:
                 oOnOff ? oOnOff = false : oOnOff = true;
+                break;
+            case 5:
+                oDays_Every= uniParam(3, 15, 3);
                 break;
             }
         }

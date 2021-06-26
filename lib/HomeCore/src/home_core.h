@@ -57,6 +57,7 @@ protected:
     uint8_t oHourStart;
     uint8_t oMinuteStart;
     uint8_t oMinuteLenght;
+    uint8_t oDays_Every;
     bool oOnOff;
 
     bool drFeedback;

@@ -18,7 +18,7 @@ HomeCore::HomeCore() {
   fillStop = 7;
   drenageStop = 24;
   sHTankMin = 4;
-
+  oDays_Every = 1;
   lights = false;
   light_0 = false;
   light_1 = false;
@@ -587,20 +587,22 @@ void HomeCore::waterLevelHT(uint8_t cm) {
 void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day) {
   static bool sw = false, on = false;
 
-  if (hour == oHourStart && min >= oMinuteStart &&
-      min <= oMinuteStart + oMinuteLenght - 1) {
-    on = true;
-  } else {
-    on = false;
-  }
+  if(day % oDays_Every == 0){
+    if (hour == oHourStart && min >= oMinuteStart &&
+        min <= oMinuteStart + oMinuteLenght - 1) {
+      on = true;
+    } else {
+      on = false;
+    }
 
-  if (on) {
-    digitalWrite(_12_V_OUT_0, HIGH);
-    // digitalWrite(RELAY_PUMP_OUT, ON);
-    sw = true;
-  } else {
-    digitalWrite(_12_V_OUT_0, LOW);
-    // digitalWrite(RELAY_PUMP_OUT, OFF);
-    sw = false;
+    if (on) {
+      digitalWrite(_12_V_OUT_0, HIGH);
+      // digitalWrite(RELAY_PUMP_OUT, ON);
+      sw = true;
+    } else {
+      digitalWrite(_12_V_OUT_0, LOW);
+      // digitalWrite(RELAY_PUMP_OUT, OFF);
+      sw = false;
+    }
   }
 }
