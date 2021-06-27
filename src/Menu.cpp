@@ -289,11 +289,11 @@ void Menu::mainMenu()
     pLcd->setCursor(0, 1);
     pLcd->print("LT ");
     pLcd->print(pParamArray[1][0]);
-    pLcd->print("cm");
+    pLcd->print("cm ");
     pLcd->setCursor(10, 1);
     pLcd->print("HT ");
     pLcd->print(pParamArray[1][1]);
-    pLcd->print("cm");
+    pLcd->print("cm ");
     pLcd->setCursor(0, 2);
     pLcd->print("Ar ");
     pLcd->print(pParamArray[0][0]);
