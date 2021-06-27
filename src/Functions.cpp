@@ -128,7 +128,7 @@ void Functions::sendParam()
 {
     String temp;
     const char s = ',';
-    temp = '[' + String(pTime->gettime("H:i:s")) + s + String(pParamArray[1][0]) + s + String(pParamArray[1][1]) + s + String(pParamArray[0][0]) + s + String(pParamArray[0][1]) + s + String(lights) + s + String(light_0) + s + String(light_1) + s + String(light_2) + s + String(drainON) + s + String(drFeedback) + s + String(waterCycleGet()) + ']';
+    temp = '[' + String(pTime->gettime("H:i:s")) + s + String(pParamArray[1][0]) + s + String(pParamArray[1][1]) + s + String(pParamArray[0][0]) + s + String(pParamArray[0][1]) + s + String(lights) + s + String(light_0) + s + String(light_1) + s + String(light_2) + s + String(drainON) + s + String(drFeedback) + s + String(waterCycleGet()) + s + String(phTds[0]) + s + String(phTds[1]) + ']';
     SERIAL.println(temp);
     Serial.println(temp);
 }

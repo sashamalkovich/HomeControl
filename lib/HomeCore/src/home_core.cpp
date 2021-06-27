@@ -1,6 +1,7 @@
 #include "home_core.h"
 
-HomeCore::HomeCore() {
+HomeCore::HomeCore()
+{
   pLcd = new LiquidCrystal_I2C(0x27, 20, 4);
   pOneWire = new OneWire(ONE_WIRE_BUS);
   pSensor = new DallasTemperature(pOneWire);
@@ -25,11 +26,14 @@ HomeCore::HomeCore() {
   light_2 = false;
   drFeedback = false;
 
-  for (int i = 0; i < 7; i++) {
+  for (int i = 0; i < 7; i++)
+  {
     knobON[i] = false;
   }
-  for (int i = 0; i < 7; i++) {
-    for (int y = 0; y < 7; y++) {
+  for (int i = 0; i < 7; i++)
+  {
+    for (int y = 0; y < 7; y++)
+    {
       paramArray[i][y] = 0;
     }
   }
@@ -37,7 +41,8 @@ HomeCore::HomeCore() {
 
 HomeCore::~HomeCore() = default;
 
-void HomeCore::setupCore() {
+void HomeCore::setupCore()
+{
   pLcd->init();
   pLcd->backlight();
   pSensor->begin();
@@ -46,9 +51,11 @@ void HomeCore::setupCore() {
   tdsPhSetup();
 }
 
-int *HomeCore::getTemp() {
+int *HomeCore::getTemp()
+{
   static long timer = millis() + 59000;
-  if (millis() - timer > 60000) {
+  if (millis() - timer > 60000)
+  {
     pSensor->requestTemperatures();
     pTemp[0] = (int)((pSensor->getTempC(sensor1)) + 0.51);
     pTemp[1] = (int)((pSensor->getTempC(sensor2)) + 0.51);
@@ -57,7 +64,8 @@ int *HomeCore::getTemp() {
   return pTemp;
 }
 
-int HomeCore::superSonic(uint8_t PIN_IN, uint8_t PIN_OUT) {
+int HomeCore::superSonic(uint8_t PIN_IN, uint8_t PIN_OUT)
+{
   long dur;
   int cm;
   digitalWrite(PIN_OUT, LOW);
@@ -70,11 +78,13 @@ int HomeCore::superSonic(uint8_t PIN_IN, uint8_t PIN_OUT) {
   return cm;
 }
 
-int *HomeCore::getSS() {
+int *HomeCore::getSS()
+{
   static int ssTemp1 = 0;
   static int ssTemp2 = 0;
   static uint32_t timer = 998;
-  if (millis() - timer > 1000) {
+  if (millis() - timer > 1000)
+  {
     ssTemp1 = superSonic(SS_PIN_IN_0, SS_PIN_OUT_0);
     ssTemp2 = superSonic(SS_PIN_IN_1, SS_PIN_OUT_1);
     timer = millis();
@@ -84,7 +94,8 @@ int *HomeCore::getSS() {
   return pSS;
 }
 
-int *HomeCore::getTime() {
+int *HomeCore::getTime()
+{
   pTime->gettime();
   timeArray[0] = pTime->Hours;
   timeArray[1] = pTime->minutes;
@@ -94,7 +105,8 @@ int *HomeCore::getTime() {
   return timeArray;
 }
 
-uint8_t HomeCore::encoder() {
+uint8_t HomeCore::encoder()
+{
   pinAValue = digitalRead(ENCODER_PIN_0); // Получаем состояние пинов A и B
   pinBValue = digitalRead(ENCODER_PIN_1);
   cli(); // Запрещаем обработку прерываний, чтобы не отвлекаться
@@ -104,10 +116,12 @@ uint8_t HomeCore::encoder() {
   if (!pinAValue && !pinBValue)
     state = -1; // Если при спаде линии А на линии B лог. ноль, то вращение в
                 // другую сторону
-  if (pinAValue && state != 0) {
+  if (pinAValue && state != 0)
+  {
     if (state == 1 && !pinBValue ||
         state == -1 &&
-            pinBValue) { // Если на линии А снова единица, фиксируем шаг
+            pinBValue)
+    { // Если на линии А снова единица, фиксируем шаг
       count += state;
       state = 0;
     }
@@ -120,63 +134,75 @@ void (*HomeCore::resetFunc)(void) = 0;
 
 bool HomeCore::saveMode = false;
 
-bool HomeCore::knob2state(uint8_t knob) {
+bool HomeCore::knob2state(uint8_t knob)
+{
   static bool switch_enc = false;
   bool state;
   state = digitalRead(knob);
-  while (!state) {
+  while (!state)
+  {
     if (!digitalRead(KNOB_0) &&
-        (!digitalRead(ESCAPE_KNOB_PIN) && !digitalRead(ENCODER_KNOB))) {
+        (!digitalRead(ESCAPE_KNOB_PIN) && !digitalRead(ENCODER_KNOB)))
+    {
       resetFunc();
     }
-    if (!digitalRead(KNOB_0) && !digitalRead(ESCAPE_KNOB_PIN)) {
+    if (!digitalRead(KNOB_0) && !digitalRead(ESCAPE_KNOB_PIN))
+    {
       saveMode = true;
     }
     state = digitalRead(knob);
 
     switch_enc = true;
   }
-  if (state && switch_enc) {
+  if (state && switch_enc)
+  {
     switch_enc = false;
     state = true;
-  } else if (state && !switch_enc) {
+  }
+  else if (state && !switch_enc)
+  {
     state = false;
   }
 
   return state;
 }
 
-void HomeCore::lcdOnOff() {
+void HomeCore::lcdOnOff()
+{
   static bool onOff = false;
-  if (!onOff) {
+  if (!onOff)
+  {
     pLcd->display();
     pLcd->setBacklight(true);
     onOff = true;
-  } else {
+  }
+  else
+  {
     pLcd->noDisplay();
     pLcd->setBacklight(false);
     onOff = false;
   }
 }
 
-void HomeCore::lcdOnOff(bool onOf) {
-  
-  if (onOf) {
+void HomeCore::lcdOnOff(bool onOf)
+{
+
+  if (onOf)
+  {
     pLcd->display();
     pLcd->setBacklight(true);
-    
-  } else {
+  }
+  else
+  {
     pLcd->noDisplay();
     pLcd->setBacklight(false);
-    
   }
 }
 
-int **HomeCore::runCore() {
+int **HomeCore::runCore()
+{
   static bool on = false, off = false;
   static bool trig = false, trig1 = false;
-  
-
 
   sendIter();
 
@@ -188,30 +214,40 @@ int **HomeCore::runCore() {
   phTds[0] = getPH();
   phTds[1] = getTDS(paramArray[0][1]);
   paramArray[4][0] = encoder();
-  
 
-  if (paramArray[3][2] == 1) {
+  if (paramArray[3][2] == 1)
+  {
 
     lights ? lights = false : lights = true;
   }
 
-  if (lights) {
-    if (saveMode) {
-      if (!trig) {
+  if (lights)
+  {
+    if (saveMode)
+    {
+      if (!trig)
+      {
         on = true;
         trig = true;
         trig1 = false;
-      } else {
+      }
+      else
+      {
         on = false;
       }
       pLcd->setCursor(0, 0);
       pLcd->print("S");
-    } else {
-      if (!trig1) {
+    }
+    else
+    {
+      if (!trig1)
+      {
         off = true;
         trig1 = true;
         trig = false;
-      } else {
+      }
+      else
+      {
         off = false;
       }
 
@@ -219,11 +255,13 @@ int **HomeCore::runCore() {
       pLcd->print(" ");
     }
 
-    if (on) {
+    if (on)
+    {
       light_0 = false;
       light_2 = false;
     }
-    if (off) {
+    if (off)
+    {
       light_0 = db.eLight_1;
       light_2 = db.eLight_3;
     }
@@ -234,35 +272,44 @@ int **HomeCore::runCore() {
             : digitalWrite(RELAY_LIGHT_1, OFF);
     light_2 ? digitalWrite(RELAY_LIGHT_2, ON)
             : digitalWrite(RELAY_LIGHT_2, OFF);
-  } else {
+  }
+  else
+  {
     digitalWrite(RELAY_LIGHT_0, OFF);
     digitalWrite(RELAY_LIGHT_1, OFF);
     digitalWrite(RELAY_LIGHT_2, OFF);
   }
 
-  if (paramArray[3][4] == 1) {
+  if (paramArray[3][4] == 1)
+  {
     saveParam();
   }
 
-  if (paramArray[3][5] == 1) {
+  if (paramArray[3][5] == 1)
+  {
     escape();
   }
-/*
+  /*
   if (paramArray[3][0] == 1) {
     lcdOnOff();
   }
   */
 
-  if (paramArray[3][3] == 1) {
+  if (paramArray[3][3] == 1)
+  {
 
     drenageOnOff();
   }
   static bool trg = false;
-  if (drenage) {
+  if (drenage)
+  {
     drenageFUNC();
     trg = false;
-  } else {
-    if (!trg) {
+  }
+  else
+  {
+    if (!trg)
+    {
       drenageStopFunc();
       trg = true;
     }
@@ -278,7 +325,8 @@ int **HomeCore::runCore() {
 
   // watering(paramArray[2][0], paramArray[2][1], paramArray[2][3]);
 
-  if (oOnOff) {
+  if (oOnOff)
+  {
     waterWatering(paramArray[2][0], paramArray[2][1], paramArray[2][3]);
   }
 
@@ -286,20 +334,26 @@ int **HomeCore::runCore() {
 }
 void HomeCore::saveParam() {}
 
-bool HomeCore::drenageOnOff() {
+bool HomeCore::drenageOnOff()
+{
   drenage ? drenage = false : drenage = true;
   return drenage;
 }
 
-int HomeCore::bool2int(bool in) {
-  if (in) {
+int HomeCore::bool2int(bool in)
+{
+  if (in)
+  {
     return 1;
-  } else {
+  }
+  else
+  {
     return 0;
   }
 }
 
-int *HomeCore::knobArray() {
+int *HomeCore::knobArray()
+{
   static int _paramArray[7];
   _paramArray[0] = bool2int(knob2state(KNOB_0));
   _paramArray[1] = bool2int(knob2state(KNOB_0));
@@ -313,44 +367,60 @@ int *HomeCore::knobArray() {
 
 void HomeCore::escape() {}
 
-void HomeCore::sendIter() {
+void HomeCore::sendIter()
+{
   static long timer;
   static uint8_t iter;
-  if ((millis() - timer) > 1000) {
+  if ((millis() - timer) > 1000)
+  {
     Serial2.print("~I" + String(iter++) + "i\n");
     timer = millis();
   }
 }
 
-void HomeCore::lightsTimer() {
+void HomeCore::lightsTimer()
+{
   int hourLightsMin;
   int hourLightsMax;
   static bool on = false;
   static bool off = false;
   static bool trig = false, trig1 = false;
-  if (Grow) {
+  if (Grow)
+  {
     hourLightsMin = GrowTimeMin;
     hourLightsMax = GrowTimeMax;
-  } else {
+  }
+  else
+  {
     hourLightsMin = BloomTimeMin;
     hourLightsMax = BloomTimeMax;
   }
-  if (timerOnOff) {
+  if (timerOnOff)
+  {
     if ((paramArray[2][0] >= hourLightsMin) &&
-        (paramArray[2][0] < hourLightsMax)) {
-      if (!trig) {
+        (paramArray[2][0] < hourLightsMax))
+    {
+      if (!trig)
+      {
         on = true;
         trig = true;
         trig1 = false;
-      } else {
+      }
+      else
+      {
         on = false;
       }
-    } else {
-      if (!trig1) {
+    }
+    else
+    {
+      if (!trig1)
+      {
         off = true;
         trig1 = true;
         trig = false;
-      } else {
+      }
+      else
+      {
         off = false;
       }
     }
@@ -361,22 +431,29 @@ void HomeCore::lightsTimer() {
   }
 }
 
-void HomeCore::tempLighsOff() {
+void HomeCore::tempLighsOff()
+{
   static long timer = millis();
   static bool sw = false;
 
-  if (millis() - timer > 900000) {
-    if (paramArray[0][0] <= 28 && paramArray[0][1] <= 26 && sw) {
+  if (millis() - timer > 900000)
+  {
+    if (paramArray[0][0] <= 28 && paramArray[0][1] <= 26 && sw)
+    {
       light_0 = db.eLight_1;
       light_1 = db.eLight_2;
       light_2 = db.eLight_3;
       sw = false;
-    } else if (paramArray[0][0] == 29 || paramArray[0][1] == 27) {
+    }
+    else if (paramArray[0][0] == 29 || paramArray[0][1] == 27)
+    {
       light_0 = db.eLight_1;
       light_1 = false;
       light_2 = db.eLight_3;
       sw = true;
-    } else if (paramArray[0][0] > 29 || paramArray[0][1] > 27) {
+    }
+    else if (paramArray[0][0] > 29 || paramArray[0][1] > 27)
+    {
       light_0 = false;
       light_1 = true;
       light_2 = false;
@@ -386,11 +463,13 @@ void HomeCore::tempLighsOff() {
   }
 }
 
-void HomeCore::drenageFUNC() {
+void HomeCore::drenageFUNC()
+{
   uint8_t SS_1 = paramArray[1][0];
   uint8_t SS_2 = paramArray[1][1];
 
-  if (paramArray[3][5]) {
+  if (paramArray[3][5])
+  {
     knobON[0] = false;
     drenageStopFunc();
     drainON = 0;
@@ -399,38 +478,58 @@ void HomeCore::drenageFUNC() {
     drenage = false;
   }
 
-  if (drainON == 0) {
-    if (SS_1 < drenageStop && SS_2 > sLTankMin) {
+  if (drainON == 0)
+  {
+    if (SS_1 < drenageStop && SS_2 > sLTankMin)
+    {
       drain();
-    } else {
+    }
+    else
+    {
       drenageStopFunc();
       drenage = false;
     }
-  } else if (drainON == 1) {
-    if (SS_1 > fillStop) {
+  }
+  else if (drainON == 1)
+  {
+    if (SS_1 > fillStop)
+    {
       fill();
-    } else {
+    }
+    else
+    {
       drenageStopFunc();
       drenage = false;
     }
-  } else if (drainON == 2) {
-    if (SS_1 > sLTankMin && SS_2 < 42) {
+  }
+  else if (drainON == 2)
+  {
+    if (SS_1 > sLTankMin && SS_2 < 42)
+    {
       fillHt();
-    } else {
+    }
+    else
+    {
       drenageStopFunc();
       drenage = false;
     }
-  } else if (drainON == 3) {
-    if (SS_2 < 42) {
+  }
+  else if (drainON == 3)
+  {
+    if (SS_2 < 42)
+    {
       drainHt();
-    } else {
+    }
+    else
+    {
       drenageStopFunc();
       drenage = false;
     }
   }
 }
 
-void HomeCore::drain() {
+void HomeCore::drain()
+{
   digitalWrite(RELAY_VALVE_1, HIGH); // Выход на слив
   // digitalWrite(RELAY_VALVE_2, HIGH); // Выход в бак
   // digitalWrite(RELAY_VALVE_3, HIGH); // Вход чистой воды
@@ -442,7 +541,8 @@ void HomeCore::drain() {
   drFeedback = true;
 }
 
-void HomeCore::fill() {
+void HomeCore::fill()
+{
   // digitalWrite(RELAY_VALVE_1, HIGH);
   digitalWrite(RELAY_VALVE_2, HIGH);
   // digitalWrite(RELAY_VALVE_3, HIGH);
@@ -454,7 +554,8 @@ void HomeCore::fill() {
   drFeedback = true;
 }
 
-void HomeCore::fillHt() {
+void HomeCore::fillHt()
+{
   // digitalWrite(RELAY_VALVE_1, HIGH);
   digitalWrite(RELAY_VALVE_2, HIGH);
   digitalWrite(RELAY_VALVE_3, HIGH);
@@ -466,7 +567,8 @@ void HomeCore::fillHt() {
   drFeedback = true;
 }
 
-void HomeCore::drainHt() {
+void HomeCore::drainHt()
+{
   digitalWrite(RELAY_VALVE_1, HIGH);
   // digitalWrite(RELAY_VALVE_2, HIGH);
   digitalWrite(RELAY_VALVE_3, HIGH);
@@ -479,7 +581,8 @@ void HomeCore::drainHt() {
   drFeedback = true;
 }
 
-void HomeCore::drenageStopFunc() {
+void HomeCore::drenageStopFunc()
+{
   digitalWrite(RELAY_VALVE_1, LOW);
   digitalWrite(RELAY_VALVE_2, LOW);
   digitalWrite(RELAY_VALVE_3, LOW);
@@ -491,32 +594,40 @@ void HomeCore::drenageStopFunc() {
   pLcd->print("   ");
 }
 
-void HomeCore::waterLevel(uint8_t cm) {
+void HomeCore::waterLevel(uint8_t cm)
+{
   static bool trg = false;
 
-  if (!drenage) {
-    if ((cm > sLTankMax + 2) || (cm < sLTankMin - 1)) {
+  if (!drenage)
+  {
+    if ((cm > sLTankMax + 2) || (cm < sLTankMin - 1))
+    {
       digitalWrite(RELAY_VALVE_2, LOW);
       digitalWrite(RELAY_VALVE_3, LOW);
       digitalWrite(RELAY_PUMP, OFF);
       pLcd->setCursor(0, 3);
       pLcd->print("ERR");
-    } else {
+    }
+    else
+    {
 
-      if (cm > sLTankMax) {
+      if (cm > sLTankMax)
+      {
         digitalWrite(RELAY_VALVE_2, HIGH);
         digitalWrite(RELAY_VALVE_3, HIGH);
         digitalWrite(RELAY_PUMP, ON);
         pLcd->setCursor(0, 3);
         pLcd->print("W  ");
         delay(100);
-        if (!trg) {
+        if (!trg)
+        {
           waterCycleAdd();
           trg = true;
         }
       }
 
-      else if (cm < sLTankMax) {
+      else if (cm < sLTankMax)
+      {
         digitalWrite(RELAY_VALVE_2, LOW);
         digitalWrite(RELAY_VALVE_3, LOW);
         digitalWrite(RELAY_PUMP, OFF);
@@ -532,21 +643,28 @@ unsigned int HomeCore::waterCycleGet() { return waterCycles; }
 
 void HomeCore::waterCycleAdd() { waterCycles++; }
 
-void HomeCore::watering(uint8_t _hour, uint8_t _minutes, uint8_t _day) {
+void HomeCore::watering(uint8_t _hour, uint8_t _minutes, uint8_t _day)
+{
 
   static bool wat = false;
 
-  if ((_hour == 12) && (_day % 1 == 0) && (_minutes >= 0) && (_minutes < 5)) {
+  if ((_hour == 12) && (_day % 1 == 0) && (_minutes >= 0) && (_minutes < 5))
+  {
     wat = true;
-  } else {
+  }
+  else
+  {
     wat = false;
   }
-  if (wat) {
+  if (wat)
+  {
     digitalWrite(_12_V_OUT_0, HIGH);
     digitalWrite(_12_V_OUT_1, HIGH);
     digitalWrite(_12_V_OUT_2, HIGH);
     digitalWrite(_12_V_OUT_3, HIGH);
-  } else {
+  }
+  else
+  {
     digitalWrite(_12_V_OUT_0, LOW);
     digitalWrite(_12_V_OUT_1, LOW);
     digitalWrite(_12_V_OUT_2, LOW);
@@ -554,18 +672,23 @@ void HomeCore::watering(uint8_t _hour, uint8_t _minutes, uint8_t _day) {
   }
 }
 
-void HomeCore::waterLevelHT(uint8_t cm) {
+void HomeCore::waterLevelHT(uint8_t cm)
+{
   static bool trig = false;
 
-  if ((cm > sHTankMax + 2) || (cm < sHTankMin - 1)) {
+  if ((cm > sHTankMax + 2) || (cm < sHTankMin - 1))
+  {
     digitalWrite(RELAY_VALVE_7, OFF);
     pLcd->setCursor(3, 3);
     //pLcd->print("E");
-  } else {
+  }
+  else
+  {
 
     if (cm > sHTankMin) // 36
     {
-      if (!trig) {
+      if (!trig)
+      {
         digitalWrite(RELAY_VALVE_7, ON);
         pLcd->setCursor(3, 3);
         //pLcd->print("W");
@@ -573,8 +696,10 @@ void HomeCore::waterLevelHT(uint8_t cm) {
       }
     }
 
-    else if (cm < sHTankMax) {
-      if (trig) {
+    else if (cm < sHTankMax)
+    {
+      if (trig)
+      {
         digitalWrite(RELAY_VALVE_7, OFF);
         pLcd->setCursor(3, 3);
         pLcd->print("  ");
@@ -584,22 +709,30 @@ void HomeCore::waterLevelHT(uint8_t cm) {
   }
 }
 
-void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day) {
+void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day)
+{
   static bool sw = false, on = false;
 
-  if(day % oDays_Every == 0){
+  if (day % oDays_Every == 0)
+  {
     if (hour == oHourStart && min >= oMinuteStart &&
-        min <= oMinuteStart + oMinuteLenght - 1) {
+        min <= oMinuteStart + oMinuteLenght - 1)
+    {
       on = true;
-    } else {
+    }
+    else
+    {
       on = false;
     }
 
-    if (on) {
+    if (on)
+    {
       digitalWrite(_12_V_OUT_0, HIGH);
       // digitalWrite(RELAY_PUMP_OUT, ON);
       sw = true;
-    } else {
+    }
+    else
+    {
       digitalWrite(_12_V_OUT_0, LOW);
       // digitalWrite(RELAY_PUMP_OUT, OFF);
       sw = false;
