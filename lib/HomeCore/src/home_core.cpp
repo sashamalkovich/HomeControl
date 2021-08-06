@@ -25,6 +25,7 @@ HomeCore::HomeCore()
   light_1 = false;
   light_2 = false;
   drFeedback = false;
+  wateringCount = 0;
 
   for (int i = 0; i < 7; i++)
   {
@@ -40,6 +41,17 @@ HomeCore::HomeCore()
 }
 
 HomeCore::~HomeCore() = default;
+
+void HomeCore::wateringCycleAdd()
+{
+
+  wateringCount++;
+}
+
+uint16_t HomeCore::wateringCycleGet()
+{
+  return wateringCount;
+}
 
 void HomeCore::setupCore()
 {
@@ -712,6 +724,7 @@ void HomeCore::waterLevelHT(uint8_t cm)
 void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day)
 {
   static bool sw = false, on = false;
+  static int count = 0;
 
   if (day % oDays_Every == 0)
   {
@@ -735,6 +748,10 @@ void HomeCore::waterWatering(uint8_t hour, uint8_t min, uint8_t day)
     {
       digitalWrite(_12_V_OUT_0, LOW);
       // digitalWrite(RELAY_PUMP_OUT, OFF);
+      if (sw)
+      {
+        wateringCycleAdd();
+      }
       sw = false;
     }
   }

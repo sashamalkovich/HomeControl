@@ -58,6 +58,8 @@ protected:
     uint8_t oMinuteStart;
     uint8_t oMinuteLenght;
     uint8_t oDays_Every;
+    
+
     bool oOnOff;
 
     bool drFeedback;
@@ -90,9 +92,13 @@ protected:
 
     unsigned int waterCycleGet();
 
+    uint16_t wateringCycleGet();
+
+    void wateringCycleAdd();
+
     void waterCycleAdd();
 
-    void waterWatering(uint8_t , uint8_t , uint8_t);
+    void waterWatering(uint8_t, uint8_t, uint8_t);
 
     virtual void lcdOnOff();
 
@@ -108,6 +114,7 @@ private:
 
     unsigned int waterCycles;
 
+    uint16_t wateringCount;
 
     void drenageFUNC();
 
