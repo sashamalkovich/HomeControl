@@ -492,7 +492,7 @@ void HomeCore::drenageFUNC()
 
   if (drainON == 0)
   {
-    if (SS_1 < drenageStop && SS_2 > sLTankMin)
+    if (SS_1 < drenageStop)// && SS_2 > sLTankMin)
     {
       drain();
     }
