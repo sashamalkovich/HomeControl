@@ -24,4 +24,7 @@ struct DataBase
     uint8_t oMinuteLenght;
     uint8_t oDays_Every;
     bool oOnOff;
+    uint8_t acidTimerHour;
+    uint8_t acidTimerMin;
+    uint32_t acidTimerDuration;
 };

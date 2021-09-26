@@ -26,6 +26,12 @@ HomeCore::HomeCore()
   light_2 = false;
   drFeedback = false;
   wateringCount = 0;
+  
+  acidf.acidTimerHour = 0;
+  acidf.acidTimerMin = 0;
+  acidf.acidTimerDuration = 0;
+
+
 
   for (int i = 0; i < 7; i++)
   {

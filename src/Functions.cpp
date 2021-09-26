@@ -81,6 +81,10 @@ void Functions::loadParam()
     oMinuteLenght = db.oMinuteLenght;
     oOnOff = db.oOnOff;
     oDays_Every = db.oDays_Every;
+    acidf.acidTimerDuration = db.acidTimerDuration;
+    acidf.acidTimerHour = db.acidTimerHour;
+    acidf.acidTimerMin = db.eBloomTimeMin;
+    
 }
 
 void Functions::saveParam()
@@ -107,6 +111,9 @@ void Functions::saveParam()
     db.oMinuteLenght = oMinuteLenght;
     db.oOnOff = oOnOff;
     db.oDays_Every = oDays_Every;
+    db.acidTimerDuration = acidf.acidTimerDuration;
+    db.acidTimerHour = acidf.acidTimerHour;
+    db.acidTimerMin = acidf.acidTimerMin;
     ePut();
     pLcd->setCursor(10, 3);
     pLcd->print("SAVE");

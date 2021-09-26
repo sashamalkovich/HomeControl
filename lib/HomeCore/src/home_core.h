@@ -59,6 +59,16 @@ protected:
     uint8_t oMinuteLenght;
     uint8_t oDays_Every;
     
+    struct acidFert
+    {
+       uint8_t acidTimerHour;
+       uint8_t acidTimerMin;
+       uint32_t acidTimerDuration;
+    };
+
+    acidFert acidf;
+    
+    
 
     bool oOnOff;
 

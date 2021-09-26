@@ -54,7 +54,7 @@ double TdsPhMeter::getPH() {
         voltage = rawVoltage  / SCOUNT * (float) 5.0 / 1024.0;;
 
         iter++;
-        iter > SCOUNT ? iter = 0 : iter = iter;
+        iter > SCOUNT -1 ? iter = 0 : iter = iter;
     }
 
     phValue = -5.70 * voltage + phCalibration;
