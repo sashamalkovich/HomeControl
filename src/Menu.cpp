@@ -64,12 +64,12 @@ uint8_t Menu::uniParam(uint8_t startNum, uint8_t encRes, uint8_t posCol, uint8_t
     }
 }
 
-
 void Menu::menu()
 {
     static uint32_t timer = millis();
 
-    if(millis() - timer > 300000U){
+    if (millis() - timer > 300000U)
+    {
         pLcd->clear();
         page = 3;
         timer = millis();
@@ -93,18 +93,21 @@ void Menu::menu()
         int sw = menuState();
         timer = millis();
 
-            if(sw == 0){
-                pLcd->clear();
-                page = 0;
-            }
-            else if (sw == 1){
-                pLcd->clear();
-                page = 3;
-            }
-            else{
-                pLcd->clear();
-                page = 2;
-            }
+        if (sw == 0)
+        {
+            pLcd->clear();
+            page = 0;
+        }
+        else if (sw == 1)
+        {
+            pLcd->clear();
+            page = 3;
+        }
+        else
+        {
+            pLcd->clear();
+            page = 2;
+        }
     }
 
     if (lights)
@@ -152,11 +155,11 @@ void Menu::menu()
         pLcd->setCursor(19, 2);
         pLcd->print(" ");
     }
-   
+
     switch (page)
     {
     case 0:
-        
+
         lcdOnOff(true);
         mainMenu();
         break;
@@ -174,17 +177,19 @@ void Menu::menu()
     }
 }
 
-int Menu::menuState(){
+int Menu::menuState()
+{
 
-static int count = 0;
+    static int count = 0;
     count++;
     return count % 3;
 }
 
-void Menu::standbyMenu(){
+void Menu::standbyMenu()
+{
     pParamArray = runCore();
 
-     pLcd->setCursor(6, 1);
+    pLcd->setCursor(6, 1);
     if (pParamArray[2][0] < 10)
     {
         pLcd->print(0);
@@ -223,11 +228,11 @@ void Menu::standbyMenu(){
     if (pParamArray[2][3] % oDays_Every == 0)
     {
         pLcd->print("!!");
-    }else{
+    }
+    else
+    {
         pLcd->print("  ");
     }
-    
-
 }
 
 void Menu::mainMenu()
@@ -254,7 +259,7 @@ void Menu::mainMenu()
     pLcd->print("TD ");
     pLcd->print((int)phTds[1]);
     pLcd->print("   ");
-/*
+    /*
     pLcd->setCursor(6, 0);
     if (pParamArray[2][0] < 10)
     {
@@ -308,7 +313,6 @@ void Menu::mainMenu()
     pLcd->setCursor(7, 3);
     pLcd->print(phTds[1]);
     */
-    
 }
 
 void Menu::page0Menu()
@@ -483,7 +487,7 @@ void Menu::programsMenu()
     while (trg)
     {
         sendIter();
-        enc = encoder() % 5;
+        enc = encoder() % 6;
         if (enc < 4)
         {
             pLcd->setCursor(0, enc);
@@ -508,27 +512,27 @@ void Menu::programsMenu()
             pLcd->print("WATER ");
             pLcd->setCursor(14, 3);
             if (drainON == 0)
-        {
-            pLcd->setCursor(14, 3);
-            pLcd->print("DRAIN ");
+            {
+                pLcd->setCursor(14, 3);
+                pLcd->print("DRAIN ");
+            }
+            else if (drainON == 1)
+            {
+                pLcd->setCursor(14, 3);
+                pLcd->print("FILL  ");
+            }
+            else if (drainON == 2)
+            {
+                pLcd->setCursor(14, 3);
+                pLcd->print("FL HT ");
+            }
+            else if (drainON == 3)
+            {
+                pLcd->setCursor(14, 3);
+                pLcd->print("DR HT ");
+            }
         }
-        else if (drainON == 1)
-        {
-            pLcd->setCursor(14, 3);
-            pLcd->print("FILL  ");
-        }
-        else if (drainON == 2)
-        {
-            pLcd->setCursor(14, 3);
-            pLcd->print("FL HT ");
-        }
-        else if (drainON == 3)
-        {
-            pLcd->setCursor(14, 3);
-            pLcd->print("DR HT ");
-        }
-        }
-        else
+        else if (enc == 4)
         {
             pLcd->setCursor(0, 3);
             pLcd->print("=>");
@@ -572,6 +576,51 @@ void Menu::programsMenu()
                 pLcd->print("DR HT ");
             }
         }
+        else if (enc == 5)
+        {
+            pLcd->setCursor(0, 3);
+            pLcd->print("=>");
+            pLcd->setCursor(0, 0);
+            pLcd->print("  ");
+            pLcd->setCursor(0, 2);
+            pLcd->print("  ");
+
+            pLcd->setCursor(14, 0);
+            timerOnOff ? pLcd->print("ON ") : pLcd->print("OFF ");
+            pLcd->setCursor(5, 0);
+            pLcd->print("TIMER ");
+            pLcd->setCursor(5, 0);
+            pLcd->print("WATER ");
+            pLcd->setCursor(5, 2);
+            pLcd->print("W OUT ");
+            pLcd->setCursor(14, 2);
+            pLcd->print("     ");
+            pLcd->setCursor(5, 3);
+            pLcd->print("ACID  ");
+            pLcd->setCursor(14, 3);
+            pLcd->print("     ");
+
+            if (drainON == 0)
+            {
+                pLcd->setCursor(14, 1);
+                pLcd->print("DRAIN ");
+            }
+            else if (drainON == 1)
+            {
+                pLcd->setCursor(14, 1);
+                pLcd->print("FILL  ");
+            }
+            else if (drainON == 2)
+            {
+                pLcd->setCursor(14, 1);
+                pLcd->print("FL HT ");
+            }
+            else if (drainON == 3)
+            {
+                pLcd->setCursor(14, 1);
+                pLcd->print("DR HT ");
+            }
+        }
 
         if (knob2state(ESCAPE_KNOB_PIN))
         {
@@ -611,6 +660,9 @@ void Menu::programsMenu()
                 break;
             case 4:
                 wateringOut();
+                break;
+            case 5:
+                acidMenu();
                 break;
             }
         }
@@ -676,7 +728,7 @@ void Menu::wateringOut()
         }
         else if (enc == 5)
         {
-            
+
             pLcd->setCursor(5, 0);
             pLcd->print("MIN     ");
             pLcd->setCursor(15, 0);
@@ -697,7 +749,6 @@ void Menu::wateringOut()
             pLcd->setCursor(15, 3);
             pLcd->print(oDays_Every);
             pLcd->print(" ");
-            
         }
 
         if (enc < 4)
@@ -752,7 +803,7 @@ void Menu::wateringOut()
                 oOnOff ? oOnOff = false : oOnOff = true;
                 break;
             case 5:
-                oDays_Every= uniParam(1, 5, 15, 3);
+                oDays_Every = uniParam(1, 5, 15, 3);
                 break;
             }
         }
@@ -1317,6 +1368,76 @@ void Menu::waterMenu()
                 break;
             case 6:
                 fillStop = uniParam(42, 15, 3);
+                break;
+            }
+        }
+    }
+}
+
+void Menu::acidMenu()
+{
+    bool trg = true;
+    uint8_t enc;
+    pLcd->clear();
+
+    while (trg)
+    {
+        sendIter();
+
+        enc = (encoder() % 4);
+
+        pLcd->setCursor(0, enc);
+        pLcd->print("=>");
+        pLcd->setCursor(0, (enc - 1));
+        pLcd->print("  ");
+        pLcd->setCursor(0, (enc + 1));
+        pLcd->print("  ");
+
+        pLcd->setCursor(5, 0);
+        pLcd->print("ACID CTRL ");
+        pLcd->setCursor(15, 0);
+        pLcd->print("  ");
+        pLcd->setCursor(5, 1);
+        pLcd->print("START HOUR");
+        pLcd->setCursor(15, 1);
+        pLcd->print(GrowTimeMin);
+        pLcd->print(" ");
+        pLcd->setCursor(5, 2);
+        pLcd->print("GROW MAX  ");
+        pLcd->setCursor(15, 2);
+        pLcd->print(GrowTimeMax);
+        pLcd->print(" ");
+        pLcd->setCursor(5, 3);
+        pLcd->print("BLOOM MIN ");
+        pLcd->setCursor(15, 3);
+        pLcd->print(BloomTimeMin);
+        pLcd->print(" ");
+
+        if (knob2state(ESCAPE_KNOB_PIN))
+        {
+            page = 0;
+            trg = false;
+            pLcd->clear();
+            mainMenu();
+        }
+        if (knob2state(ENCODER_KNOB))
+        {
+            switch (enc)
+            {
+            case 0:
+                page = 0;
+                trg = false;
+                pLcd->clear();
+                settingsMenu();
+                break;
+            case 1:
+                acidf.acidTimerHour = uniParam(24, 15, 1);
+                break;
+            case 2:
+                acidf.acidTimerMin = uniParam(24, 15, 2);
+                break;
+            case 3:
+                acidf.acidTimerMin = uniParam(24, 15, 3);
                 break;
             }
         }

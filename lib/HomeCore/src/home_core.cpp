@@ -26,12 +26,10 @@ HomeCore::HomeCore()
   light_2 = false;
   drFeedback = false;
   wateringCount = 0;
-  
+
   acidf.acidTimerHour = 0;
   acidf.acidTimerMin = 0;
   acidf.acidTimerDuration = 0;
-
-
 
   for (int i = 0; i < 7; i++)
   {
@@ -47,6 +45,30 @@ HomeCore::HomeCore()
 }
 
 HomeCore::~HomeCore() = default;
+
+void HomeCore::acidFlow()
+{
+  static bool sW = false;
+
+  if (paramArray[2][0] == acidf.acidTimerHour && paramArray[2][1] == acidf.acidTimerMin)
+  {
+    uint32_t timer_ = millis();
+    while (!sW)
+    {
+      digitalWrite(_12_V_OUT_3, HIGH);
+      
+      if (millis() - timer_ > acidf.acidTimerDuration)
+      {
+        digitalWrite(_12_V_OUT_3, LOW);
+        sW = true;
+      }
+    }
+  }
+  else
+  {
+    sW = false;
+  }
+}
 
 void HomeCore::wateringCycleAdd()
 {
@@ -498,7 +520,7 @@ void HomeCore::drenageFUNC()
 
   if (drainON == 0)
   {
-    if (SS_1 < drenageStop)// && SS_2 > sLTankMin)
+    if (SS_1 < drenageStop) // && SS_2 > sLTankMin)
     {
       drain();
     }

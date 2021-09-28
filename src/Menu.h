@@ -21,8 +21,6 @@ protected:
 
     int **pParamArray;
 
-    
-
 private:
     int menuState();
     void standbyMenu();
@@ -32,6 +30,7 @@ private:
     void programsMenu();
     void settingsMenu();
 
+    void acidMenu();
     void timeMenu();
     void waterMenu();
     void wateringOut();

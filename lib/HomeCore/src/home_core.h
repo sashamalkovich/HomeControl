@@ -68,7 +68,7 @@ protected:
 
     acidFert acidf;
     
-    
+    void acidFlow();
 
     bool oOnOff;
 
