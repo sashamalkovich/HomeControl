@@ -27,9 +27,9 @@ HomeCore::HomeCore()
   drFeedback = false;
   wateringCount = 0;
 
-  acidf.acidTimerHour = 0;
-  acidf.acidTimerMin = 0;
-  acidf.acidTimerDuration = 0;
+  acidf.acidTimerHour = 12;
+  acidf.acidTimerMin = 12;
+  acidf.acidTimerDuration = 1;
 
   for (int i = 0; i < 7; i++)
   {
@@ -56,8 +56,8 @@ void HomeCore::acidFlow()
     while (!sW)
     {
       digitalWrite(_12_V_OUT_3, HIGH);
-      
-      if (millis() - timer_ > acidf.acidTimerDuration)
+
+      if (millis() - timer_ > acidf.acidTimerDuration * 600)
       {
         digitalWrite(_12_V_OUT_3, LOW);
         sW = true;

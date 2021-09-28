@@ -63,7 +63,7 @@ protected:
     {
        uint8_t acidTimerHour;
        uint8_t acidTimerMin;
-       uint32_t acidTimerDuration;
+       uint8_t acidTimerDuration;
     };
 
     acidFert acidf;

@@ -1400,17 +1400,17 @@ void Menu::acidMenu()
         pLcd->setCursor(5, 1);
         pLcd->print("START HOUR");
         pLcd->setCursor(15, 1);
-        pLcd->print(GrowTimeMin);
+        pLcd->print(acidf.acidTimerHour);
         pLcd->print(" ");
         pLcd->setCursor(5, 2);
-        pLcd->print("GROW MAX  ");
+        pLcd->print("START MIN ");
         pLcd->setCursor(15, 2);
-        pLcd->print(GrowTimeMax);
+        pLcd->print(acidf.acidTimerMin);
         pLcd->print(" ");
         pLcd->setCursor(5, 3);
-        pLcd->print("BLOOM MIN ");
+        pLcd->print("VOLUME ");
         pLcd->setCursor(15, 3);
-        pLcd->print(BloomTimeMin);
+        pLcd->print(acidf.acidTimerDuration);
         pLcd->print(" ");
 
         if (knob2state(ESCAPE_KNOB_PIN))
@@ -1437,7 +1437,7 @@ void Menu::acidMenu()
                 acidf.acidTimerMin = uniParam(24, 15, 2);
                 break;
             case 3:
-                acidf.acidTimerMin = uniParam(24, 15, 3);
+                acidf.acidTimerDuration = uniParam(24, 15, 3);
                 break;
             }
         }
